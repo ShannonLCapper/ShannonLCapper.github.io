@@ -1,4 +1,5 @@
 @import "variables"
+@import "mixins"
 
 .jumbotron
 	$jumbo-color: $white
@@ -47,18 +48,21 @@
 	.quick-scroll
 		$height: 80px
 		$border-radius: $nav-radius
-		position: absolute
 		display: block
-		bottom: 0
-		right: $nav-right
-		width: $nav-width
-		height: $height
-		line-height: $height
-		background-color: $secondary
 		font-size: 35px
+		line-height: $height
 		color: $jumbo-color
-		border-top-right-radius: $border-radius
-		border-top-left-radius: $border-radius
+		background-color: $secondary
+		position: absolute
+		bottom: 0
+		height: $height
+		right: 0
+		width: 100%
+		@include respond-to($sm-bp)
+			right: $nav-right
+			width: $nav-width
+			border-top-right-radius: $border-radius
+			border-top-left-radius: $border-radius
 
 		i
 			animation: .8s bounce infinite alternate
