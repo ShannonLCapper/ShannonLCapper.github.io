@@ -26,7 +26,7 @@ body {
     background-position: center center;
     background-attachment: fixed;
     z-index: 1;
-    opacity: .6; }
+    opacity: .45; }
   .jumbotron h1, .jumbotron p, .jumbotron .quick-scroll {
     z-index: 2;
     position: relative; }
@@ -64,32 +64,60 @@ body {
   to {
     transform: translateY(0px); } }
 
-section {
-  padding-top: 60px;
-  padding-bottom: 60px; }
-  section:nth-child(2n) {
-    background-color: #e1d9c2; }
-  section .wrapper {
-    max-width: 1280px;
-    margin-left: auto;
-    margin-right: auto; }
-    @media (min-width: 768px) {
-      section .wrapper {
-        padding-left: 170px;
-        padding-right: 170px; } }
-  section h2,
-  section h3 {
-    color: #6b933c;
-    font-weight: normal; }
-  section h2,
-  section p.lead {
-    text-align: center; }
-  section h2 {
-    font-size: 5.5rem;
-    margin-top: 0; }
-  section h3 {
-    font-size: 3rem; }
-  section p.lead {
-    border-bottom: 1px solid rgba(50, 15, 30, 0.4);
-    padding-bottom: 30px;
-    margin-bottom: 30px; }
+segment section {
+  padding: 60px 15px; }
+
+segment:nth-of-type(2n) section {
+  background-color: #eae7cf; }
+
+segment:last-of-type {
+  color: rgba(255, 255, 255, 0.7); }
+  segment:last-of-type section {
+    background-color: #503440; }
+  segment:last-of-type h2,
+  segment:last-of-type h3 {
+    color: white; }
+  segment:last-of-type p.lead {
+    border-color: rgba(255, 255, 255, 0.3); }
+
+segment .wrapper {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto; }
+  @media (min-width: 768px) {
+    segment .wrapper {
+      padding-left: 170px;
+      padding-right: 170px; } }
+
+segment h2,
+segment h3 {
+  color: #6b933c;
+  font-weight: normal; }
+
+segment h2,
+segment p.lead {
+  text-align: center; }
+
+segment h2 {
+  font-size: 5.5rem;
+  margin-top: 0; }
+
+segment h3 {
+  font-size: 3rem; }
+
+segment p.lead {
+  border-bottom: 1px solid rgba(50, 15, 30, 0.4);
+  padding-bottom: 30px;
+  margin-bottom: 30px; }
+
+segment q::before {
+  content: '"'; }
+
+segment q::after {
+  content: '"'; }
+
+segment cite {
+  font-weight: normal;
+  display: block; }
+  segment cite::before {
+    content: "\2014"; }

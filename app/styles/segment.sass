@@ -1,14 +1,28 @@
 @import "variables"
 @import "mixins"
 
-section
+segment
+	$xs-horiz-padding: 15px
 	$horiz-padding: $nav-width + $nav-right + 20px
 	$vertical-padding: 60px
 
-	padding-top: $vertical-padding
-	padding-bottom: $vertical-padding
-	&:nth-child(2n)
-		background-color: $light
+	section
+		padding: $vertical-padding $xs-horiz-padding
+
+	&:nth-of-type(2n)
+		section
+			background-color: $light
+
+	&:last-of-type
+		$color: $white
+		color: rgba($color, .7)
+		section
+			background-color: scale_color($secondary, $saturation: -60%, $lightness: 15%)
+		h2,
+		h3
+			color: $white
+		p.lead
+			border-color: rgba($color, .3)
 
 	.wrapper
 		max-width: 1280px
@@ -39,4 +53,15 @@ section
 		border-bottom: 1px solid rgba($secondary, .4)
 		padding-bottom: $spacing
 		margin-bottom: $spacing
+
+	q
+		&::before
+			content: '"'
+		&::after
+			content: '"'
+	cite
+		font-weight: normal
+		display: block
+		&::before
+			content: "\2014"
 

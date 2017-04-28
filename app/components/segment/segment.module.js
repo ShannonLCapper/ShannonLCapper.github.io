@@ -2,7 +2,8 @@
 
 (function() {
 	
-	angular.module("education", [
+	angular.module("segment", [
+
 	]);
 
 })();

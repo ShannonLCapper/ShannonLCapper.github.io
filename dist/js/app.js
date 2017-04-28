@@ -4,6 +4,7 @@
 	
 	angular.module("interactiveResume", [
 		"jumbotron",
+    "segment",
     "profile",
     "projects",
     "skills",
@@ -18,7 +19,6 @@
 (function() {
 	
 	angular.module("contact", [
-
 	]);
 
 })();
@@ -27,7 +27,6 @@
 (function() {
 	
 	angular.module("education", [
-
 	]);
 
 })();
@@ -45,7 +44,6 @@
 (function() {
 	
 	angular.module("profile", [
-
 	]);
 
 })();
@@ -54,6 +52,14 @@
 (function() {
 	
 	angular.module("projects", [
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular.module("segment", [
 
 	]);
 
@@ -63,7 +69,6 @@
 (function() {
 	
 	angular.module("skills", [
-
 	]);
 
 })();
@@ -72,8 +77,29 @@
 (function() {
 	
 	angular.module("workExperience", [
-
 	]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("contact")
+		.component("contact", {
+			templateUrl: "app/components/contact/contact.html",
+		});
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("education")
+		.component("education", {
+			templateUrl: "app/components/education/education.html",
+		});
 
 })();
 "use strict";
@@ -109,6 +135,55 @@
           return age;
         }
       }
+		});
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("projects")
+		.component("projects", {
+			templateUrl: "app/components/projects/projects.html",
+		});
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("segment")
+		.directive("segment", function() {
+      return {
+        restrict: "E",
+        transclude: true,
+        scope: {},
+        template: "<section><div class='wrapper'><ng-transclude></ng-transclude></div></section>"
+      }
+		});
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("skills")
+		.component("skills", {
+			templateUrl: "app/components/skills/skills.html",
+		});
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("workExperience")
+		.component("workExperience", {
+			templateUrl: "app/components/work-experience/work-experience.html",
 		});
 
 })();
