@@ -1,0 +1,61 @@
+body {
+  background-color: white;
+  color: #320f1e; }
+
+.jumbotron {
+  text-align: center;
+  height: 100vh;
+  width: 100vw;
+  display: table-cell;
+  vertical-align: middle;
+  background-color: #718a33;
+  color: white;
+  position: relative;
+  overflow: hidden; }
+  .jumbotron::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: url("/app/images/jumbotron/flowers.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    z-index: 1;
+    opacity: .6; }
+  .jumbotron h1, .jumbotron p, .jumbotron .quick-scroll {
+    z-index: 2;
+    position: relative; }
+  .jumbotron h1 {
+    border-bottom: 1px solid white;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    display: inline-block;
+    font-weight: bold; }
+  .jumbotron p {
+    margin-top: 0px; }
+  .jumbotron .quick-scroll {
+    position: absolute;
+    display: block;
+    bottom: 0;
+    right: 40px;
+    width: 110px;
+    height: 80px;
+    line-height: 80px;
+    background-color: #320f1e;
+    font-size: 35px;
+    color: white;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px; }
+    .jumbotron .quick-scroll i {
+      animation: .8s bounce infinite alternate; }
+
+@keyframes bounce {
+  from {
+    transform: translateY(10px); }
+  to {
+    transform: translateY(0px); } }

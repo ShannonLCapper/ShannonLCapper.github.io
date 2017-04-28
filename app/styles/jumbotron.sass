@@ -1,0 +1,73 @@
+@import "variables"
+
+.jumbotron
+	$jumbo-color: $white
+
+	text-align: center
+	height: 100vh
+	width: 100vw
+	display: table-cell
+	vertical-align: middle
+	background-color: $primary
+	color: $jumbo-color
+	position: relative
+	overflow: hidden
+
+	&::before //add a semi-transparent background image
+		content: ""
+		display: block
+		position: absolute
+		top: 0
+		left: 0
+		bottom: 0
+		right: 0
+		background-image: url("/app/images/jumbotron/flowers.jpg")
+		background-repeat: no-repeat
+		background-size: cover
+		background-position: center center
+		background-attachment: fixed
+		z-index: 1
+		opacity: .6
+
+	h1, p, .quick-scroll //to position jumbotron elements in front of background image
+		z-index: 2
+		position: relative
+		
+	h1
+		$spacing: 15px
+
+		border-bottom: 1px solid $jumbo-color
+		padding-bottom: $spacing
+		margin-bottom: $spacing
+		display: inline-block
+		font-weight: bold
+	p
+		margin-top: 0px
+
+	.quick-scroll
+		$height: 80px
+		$border-radius: $nav-radius
+		position: absolute
+		display: block
+		bottom: 0
+		right: $nav-right
+		width: $nav-width
+		height: $height
+		line-height: $height
+		background-color: $secondary
+		font-size: 35px
+		color: $jumbo-color
+		border-top-right-radius: $border-radius
+		border-top-left-radius: $border-radius
+
+		i
+			animation: .8s bounce infinite alternate
+
+@keyframes bounce
+	from
+		transform: translateY(10px)
+	to
+		transform: translateY(0px)
+
+
+
