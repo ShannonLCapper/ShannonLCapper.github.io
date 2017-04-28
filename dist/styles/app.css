@@ -8,7 +8,7 @@ body {
   width: 100vw;
   display: table-cell;
   vertical-align: middle;
-  background-color: #6b933c;
+  background-color: #405824;
   color: white;
   position: relative;
   overflow: hidden; }
@@ -63,3 +63,33 @@ body {
     transform: translateY(10px); }
   to {
     transform: translateY(0px); } }
+
+section {
+  padding-top: 60px;
+  padding-bottom: 60px; }
+  section:nth-child(2n) {
+    background-color: #e1d9c2; }
+  section .wrapper {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto; }
+    @media (min-width: 768px) {
+      section .wrapper {
+        padding-left: 170px;
+        padding-right: 170px; } }
+  section h2,
+  section h3 {
+    color: #6b933c;
+    font-weight: normal; }
+  section h2,
+  section p.lead {
+    text-align: center; }
+  section h2 {
+    font-size: 5.5rem;
+    margin-top: 0; }
+  section h3 {
+    font-size: 3rem; }
+  section p.lead {
+    border-bottom: 1px solid rgba(50, 15, 30, 0.4);
+    padding-bottom: 30px;
+    margin-bottom: 30px; }

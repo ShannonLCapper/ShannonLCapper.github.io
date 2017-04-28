@@ -1,0 +1,42 @@
+@import "variables"
+@import "mixins"
+
+section
+	$horiz-padding: $nav-width + $nav-right + 20px
+	$vertical-padding: 60px
+
+	padding-top: $vertical-padding
+	padding-bottom: $vertical-padding
+	&:nth-child(2n)
+		background-color: $light
+
+	.wrapper
+		max-width: 1280px
+		margin-left: auto
+		margin-right: auto
+		@include respond-to($sm-bp)
+			padding-left: $horiz-padding
+			padding-right: $horiz-padding
+	
+	h2, 
+	h3
+		color: $primary
+		font-weight: normal
+
+	h2, 
+	p.lead
+		text-align: center
+
+	h2
+		font-size: 5.5rem
+		margin-top: 0
+
+	h3
+		font-size: 3rem
+
+	p.lead
+		$spacing: 30px
+		border-bottom: 1px solid rgba($secondary, .4)
+		padding-bottom: $spacing
+		margin-bottom: $spacing
+

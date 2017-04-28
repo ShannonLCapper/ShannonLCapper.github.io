@@ -3,7 +3,13 @@
 (function() {
 	
 	angular.module("interactiveResume", [
-		"jumbotron"
+		"jumbotron",
+    "profile",
+    "projects",
+    "skills",
+    "education",
+    "workExperience",
+    "contact"
 	]);
 
 })();
