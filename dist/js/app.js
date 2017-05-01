@@ -19,7 +19,33 @@
 
 (function() {
 	
+	angular.module("collapseOnClick", [
+
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular.module("scrollOnClick", [
+        
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
 	angular.module("contact", [
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular.module("education", [
 	]);
 
 })();
@@ -29,14 +55,6 @@
 	
 	angular.module("jumbotron", [
 		
-	]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular.module("education", [
 	]);
 
 })();
@@ -95,18 +113,53 @@
 
 (function() {
 	
-	angular.module("collapseOnClick", [
-
-	]);
+	angular
+		.module("collapseOnClick")
+		.directive("collapseOnClick", [function() {
+      return {
+        restrict: "A",
+        link: function(scope, element, attrs) {
+          var selectorToCollapse = attrs.collapseThis;
+          element.on("click", function() {
+            var $target;
+            var $potentialTarget = $(selectorToCollapse);
+            if ($potentialTarget) {
+              $target = $potentialTarget;
+            } else {
+              $target = element;
+            }
+            if ($target.data("bs.collapse")) {
+              $target.collapse("hide");
+            }
+          })
+        }
+      }
+		}]);
 
 })();
 "use strict";
 
 (function() {
 	
-	angular.module("scrollOnClick", [
-        
-	]);
+	angular
+		.module("scrollOnClick")
+		.directive("scrollOnClick", [function() {
+      return {
+        restrict: "A",
+        link: function(scope, element, attrs) {
+          var idToScroll = attrs.href || attrs.ngHref;
+          element.on("click", function() {
+            var $target;
+            if (idToScroll) {
+              $target = $(idToScroll);
+            } else {
+              $target = element;
+            }
+            $("body").animate({scrollTop: $target.offset().top}, "slow");
+          })
+        }
+      }
+		}]);
 
 })();
 "use strict";
@@ -125,9 +178,9 @@
 (function() {
 	
 	angular
-		.module("jumbotron")
-		.component("jumbotron", {
-			templateUrl: "app/components/jumbotron/jumbotron.html",
+		.module("education")
+		.component("education", {
+			templateUrl: "app/components/education/education.html",
 		});
 
 })();
@@ -136,9 +189,9 @@
 (function() {
 	
 	angular
-		.module("education")
-		.component("education", {
-			templateUrl: "app/components/education/education.html",
+		.module("jumbotron")
+		.component("jumbotron", {
+			templateUrl: "app/components/jumbotron/jumbotron.html",
 		});
 
 })();
@@ -287,52 +340,5 @@
 		.component("workExperience", {
 			templateUrl: "app/components/work-experience/work-experience.html",
 		});
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
-		.module("collapseOnClick")
-		.directive("collapseOnClick", [function() {
-      return {
-        restrict: "A",
-        link: function(scope, element, attrs) {
-          var selectorToCollapse = attrs.collapseThis;
-          element.on("click", function() {
-            var $target = $(selectorToCollapse);
-            if ($target.data("bs.collapse")) {
-              $target.collapse("hide");
-            }
-          })
-        }
-      }
-		}]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
-		.module("scrollOnClick")
-		.directive("scrollOnClick", [function() {
-      return {
-        restrict: "A",
-        link: function(scope, element, attrs) {
-          var idToScroll = attrs.href || attrs.ngHref;
-          element.on("click", function() {
-            var $target;
-            if (idToScroll) {
-              $target = $(idToScroll);
-            } else {
-              $target = element;
-            }
-            $("body").animate({scrollTop: $target.offset().top}, "slow");
-          })
-        }
-      }
-		}]);
 
 })();

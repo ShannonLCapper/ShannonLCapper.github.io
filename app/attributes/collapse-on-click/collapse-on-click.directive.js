@@ -10,7 +10,13 @@
         link: function(scope, element, attrs) {
           var selectorToCollapse = attrs.collapseThis;
           element.on("click", function() {
-            var $target = $(selectorToCollapse);
+            var $target;
+            var $potentialTarget = $(selectorToCollapse);
+            if ($potentialTarget) {
+              $target = $potentialTarget;
+            } else {
+              $target = element;
+            }
             if ($target.data("bs.collapse")) {
               $target.collapse("hide");
             }
