@@ -15,19 +15,20 @@ navigation
 	width: 100%
 	right: 0
 	top: 0
-	
-	&.affix-top
-		position: absolute
+	position: absolute
+		
+	&.affix
+		position: fixed
 
 	@include respond-to($sm-bp)
 		width: $nav-width
 		right: $nav-right
-		border-radius: $nav-radius
-		&.affix-top
-			border-top-left-radius: 0
-			border-top-right-radius: 0
+		border-top-left-radius: 0
+		border-top-right-radius: 0
+			
 		&.affix
 			top: $nav-top
+			border-radius: $nav-radius
 			
 
 	.icon-bar

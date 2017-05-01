@@ -87,19 +87,19 @@ navigation {
   border: none;
   width: 100%;
   right: 0;
-  top: 0; }
-  .navbar.affix-top {
-    position: absolute; }
+  top: 0;
+  position: absolute; }
+  .navbar.affix {
+    position: fixed; }
   @media (min-width: 768px) {
     .navbar {
       width: 110px;
       right: 40px;
-      border-radius: 5px; }
-      .navbar.affix-top {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0; }
+      border-top-left-radius: 0;
+      border-top-right-radius: 0; }
       .navbar.affix {
-        top: 60px; } }
+        top: 60px;
+        border-radius: 5px; } }
   .navbar .icon-bar {
     background-color: #6b933c !important; }
   .navbar li {
