@@ -122,9 +122,8 @@
           var selectorToCollapse = attrs.collapseThis;
           element.on("click", function() {
             var $target;
-            var $potentialTarget = $(selectorToCollapse);
-            if ($potentialTarget) {
-              $target = $potentialTarget;
+            if (selectorToCollapse) {
+              $target = $(selectorToCollapse);
             } else {
               $target = element;
             }
