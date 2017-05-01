@@ -1,7 +1,8 @@
 body {
   background-color: white;
   color: #320f1e;
-  font-family: 'Raleway', sans-serif; }
+  font-family: 'Raleway', sans-serif;
+  position: relative; }
 
 h1,
 h2,
@@ -9,7 +10,6 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Poiret One', cursive;
   font-family: 'Kaushan Script', cursive; }
 
 .jumbotron {
@@ -74,8 +74,71 @@ h6 {
   to {
     transform: translateY(0px); } }
 
+navigation {
+  position: absolute;
+  overflow: visible;
+  z-index: 100;
+  width: 100%; }
+
+.navbar {
+  text-align: center;
+  font-size: 1.8rem;
+  background-color: #320f1e;
+  border: none;
+  width: 100%;
+  right: 0;
+  top: 0; }
+  .navbar.affix-top {
+    position: absolute; }
+  @media (min-width: 768px) {
+    .navbar {
+      width: 110px;
+      right: 40px;
+      border-radius: 5px; }
+      .navbar.affix-top {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0; }
+      .navbar.affix {
+        top: 60px; } }
+  .navbar li {
+    display: block;
+    width: 100%;
+    padding: 15px 0; }
+    .navbar li.active {
+      background-color: #6b933c; }
+      .navbar li.active:first-of-type {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px; }
+      .navbar li.active:last-of-type {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px; }
+      .navbar li.active a {
+        background-color: transparent !important; }
+  .navbar a {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    display: block;
+    width: 100%;
+    color: white !important; }
+    .navbar a:hover, .navbar a:focus {
+      color: #ddd8b0 !important; }
+
+.navbar-collapse {
+  padding-left: 0;
+  padding-right: 0;
+  border-color: white; }
+
+.navbar-nav {
+  width: 100%;
+  margin-left: 0;
+  margin-rigth: 0; }
+  @media (min-width: 768px) {
+    .navbar-nav {
+      max-height: calc(100vh - 120px);
+      overflow-y: auto; } }
+
 segment section {
-  padding: 60px 15px; }
+  padding: 60px 20px; }
 
 segment:nth-of-type(2n) section {
   background-color: #eae7cf; }
@@ -83,7 +146,8 @@ segment:nth-of-type(2n) section {
 segment:last-of-type {
   color: rgba(255, 255, 255, 0.7); }
   segment:last-of-type section {
-    background-color: #503440; }
+    background-color: #503440;
+    min-height: 100vh; }
   segment:last-of-type h2,
   segment:last-of-type h3 {
     color: white; }

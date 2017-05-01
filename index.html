@@ -22,26 +22,31 @@
     <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     
 </head>
-<body>
-    <jumbotron></jumbotron>
-    <segment>
-        <profile id="profile"></profile>
-    </segment>
-    <segment>
-        <projects id="projects"></projects>
-    </segment>
-    <segment>
-        <skills id="skills"></skills>
-    </segment>
-    <segment>
-        <education id="education"></education>
-    </segment>
-    <segment>
-        <work-experience id="work-experience"></work-experience>
-    </segment>
-    <segment>
-        <contact id="contact"></contact>
-    </segment>
+<body data-spy="scroll" data-target=".navbar-collapse" data-offset="40">
+    <header>
+        <jumbotron></jumbotron>
+    </header>
+    <navigation></navigation>
+    <main>
+        <segment id="profile">
+            <profile></profile>
+        </segment>
+        <segment id="projects">
+            <projects></projects>
+        </segment>
+        <segment id="skills">
+            <skills></skills>
+        </segment>
+        <segment id="education">
+            <education></education>
+        </segment>
+        <segment id="work-experience">
+            <work-experience></work-experience>
+        </segment>
+        <segment id="contact">
+            <contact></contact>
+        </segment>
+    </main>
 
     <script id="__bs_script__">//<![CDATA[
         document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.18.8'><\/script>".replace("HOST", location.hostname));

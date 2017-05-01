@@ -1,0 +1,72 @@
+@import "variables"
+@import "mixins"
+
+navigation
+	position: absolute
+	overflow: visible
+	z-index: 100
+	width: 100%
+
+.navbar
+	text-align: center
+	font-size: 1.8rem
+	background-color: $secondary
+	border: none
+	width: 100%
+	right: 0
+	top: 0
+	
+	&.affix-top
+		position: absolute
+
+	@include respond-to($sm-bp)
+		width: $nav-width
+		right: $nav-right
+		border-radius: $nav-radius
+		&.affix-top
+			border-top-left-radius: 0
+			border-top-right-radius: 0
+		&.affix
+			top: $nav-top
+			
+
+	
+	li
+		display: block
+		width: 100%
+		padding: 15px 0
+		&.active
+			background-color: $primary
+			&:first-of-type
+				border-top-left-radius: $nav-radius
+				border-top-right-radius: $nav-radius
+			&:last-of-type
+				border-bottom-left-radius: $nav-radius
+				border-bottom-right-radius: $nav-radius
+			a
+				background-color: transparent !important
+
+	a
+		padding-left: 0 !important
+		padding-right: 0 !important
+		display: block
+		width: 100%
+		color: $white !important
+
+		&:hover,
+		&:focus
+			color: scale_color($light, $lightness: -10%) !important
+
+
+.navbar-collapse
+	padding-left: 0
+	padding-right: 0
+	border-color: $white
+
+.navbar-nav
+	width: 100%
+	margin-left: 0
+	margin-rigth: 0
+	@include respond-to($sm-bp)
+		max-height: calc(100vh - #{$nav-top + $nav-top})
+		overflow-y: auto

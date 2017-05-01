@@ -4,6 +4,7 @@
 	
 	angular.module("interactiveResume", [
 		"jumbotron",
+    "navigation",
     "segment",
     "profile",
     "projects",
