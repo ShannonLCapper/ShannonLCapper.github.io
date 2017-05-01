@@ -19,14 +19,6 @@
 
 (function() {
 	
-	angular.module("education", [
-	]);
-
-})();
-"use strict";
-
-(function() {
-	
 	angular.module("contact", [
 	]);
 
@@ -44,8 +36,7 @@
 
 (function() {
 	
-	angular.module("navigation", [
-        
+	angular.module("education", [
 	]);
 
 })();
@@ -53,7 +44,9 @@
 
 (function() {
 	
-	angular.module("projects", [
+	angular.module("navigation", [
+    "scrollOnClick",
+    "collapseOnClick" 
 	]);
 
 })();
@@ -62,6 +55,14 @@
 (function() {
 	
 	angular.module("profile", [
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular.module("projects", [
 	]);
 
 })();
@@ -94,11 +95,18 @@
 
 (function() {
 	
-	angular
-		.module("education")
-		.component("education", {
-			templateUrl: "app/components/education/education.html",
-		});
+	angular.module("collapseOnClick", [
+
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular.module("scrollOnClick", [
+        
+	]);
 
 })();
 "use strict";
@@ -121,6 +129,38 @@
 		.component("jumbotron", {
 			templateUrl: "app/components/jumbotron/jumbotron.html",
 		});
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("education")
+		.component("education", {
+			templateUrl: "app/components/education/education.html",
+		});
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("navigation")
+		.directive("navLink", [function() {
+      return {
+        restrict: "E",
+        scope: {
+          label: "@",
+          goesTo: "@"
+        },
+        //template needs <li> portion to make scrollspy work
+        template: "<li><a ng-href='{{goesTo}}' scroll-on-click collapse-on-click collapse-this='.navbar-collapse'>{{label}}</a></li>",
+        link: function(scope, element, attrs, parentCtrl) {
+        }
+      }
+		}]);
 
 })();
 "use strict";
@@ -180,17 +220,6 @@
 (function() {
 	
 	angular
-		.module("projects")
-		.component("projects", {
-			templateUrl: "app/components/projects/projects.html",
-		});
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
 		.module("profile")
 		.component("profile", {
 			templateUrl: "app/components/profile/profile.html",
@@ -208,6 +237,17 @@
           return age;
         }
       }
+		});
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("projects")
+		.component("projects", {
+			templateUrl: "app/components/projects/projects.html",
 		});
 
 })();
@@ -247,5 +287,52 @@
 		.component("workExperience", {
 			templateUrl: "app/components/work-experience/work-experience.html",
 		});
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("collapseOnClick")
+		.directive("collapseOnClick", [function() {
+      return {
+        restrict: "A",
+        link: function(scope, element, attrs) {
+          var selectorToCollapse = attrs.collapseThis;
+          element.on("click", function() {
+            var $target = $(selectorToCollapse);
+            if ($target.data("bs.collapse")) {
+              $target.collapse("hide");
+            }
+          })
+        }
+      }
+		}]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("scrollOnClick")
+		.directive("scrollOnClick", [function() {
+      return {
+        restrict: "A",
+        link: function(scope, element, attrs) {
+          var idToScroll = attrs.href || attrs.ngHref;
+          element.on("click", function() {
+            var $target;
+            if (idToScroll) {
+              $target = $(idToScroll);
+            } else {
+              $target = element;
+            }
+            $("body").animate({scrollTop: $target.offset().top}, "slow");
+          })
+        }
+      }
+		}]);
 
 })();
