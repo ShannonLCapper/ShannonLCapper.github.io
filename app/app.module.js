@@ -4,14 +4,14 @@
 	
 	angular.module("interactiveResume", [
 		"jumbotron",
-    "navigation",
-    "segment",
-    "profile",
-    "projects",
-    "skills",
-    "education",
-    "workExperience",
-    "contact"
+        "navigation",
+        "segment",
+        "profile",
+        "projects",
+        "skills",
+        "education",
+        "workExperience",
+        "contact"
 	]);
 
 })();

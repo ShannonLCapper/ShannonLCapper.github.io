@@ -4,22 +4,14 @@
 	
 	angular.module("interactiveResume", [
 		"jumbotron",
-    "navigation",
-    "segment",
-    "profile",
-    "projects",
-    "skills",
-    "education",
-    "workExperience",
-    "contact"
-	]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular.module("contact", [
+        "navigation",
+        "segment",
+        "profile",
+        "projects",
+        "skills",
+        "education",
+        "workExperience",
+        "contact"
 	]);
 
 })();
@@ -28,6 +20,14 @@
 (function() {
 	
 	angular.module("education", [
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular.module("contact", [
 	]);
 
 })();
@@ -53,7 +53,7 @@
 
 (function() {
 	
-	angular.module("profile", [
+	angular.module("projects", [
 	]);
 
 })();
@@ -61,7 +61,7 @@
 
 (function() {
 	
-	angular.module("projects", [
+	angular.module("profile", [
 	]);
 
 })();
@@ -95,9 +95,9 @@
 (function() {
 	
 	angular
-		.module("contact")
-		.component("contact", {
-			templateUrl: "app/components/contact/contact.html",
+		.module("education")
+		.component("education", {
+			templateUrl: "app/components/education/education.html",
 		});
 
 })();
@@ -106,9 +106,9 @@
 (function() {
 	
 	angular
-		.module("education")
-		.component("education", {
-			templateUrl: "app/components/education/education.html",
+		.module("contact")
+		.component("contact", {
+			templateUrl: "app/components/contact/contact.html",
 		});
 
 })();
@@ -157,6 +157,7 @@
           function onResize() {
             scope.offset = calculateOffset();
             var $dataSpyEl = element.find( "[data-spy='affix']" );
+            if (!$dataSpyEl.length) return;
             $dataSpyEl.data("bs.affix").options.offset.top = scope.offset;
             $dataSpyEl.affix("checkPosition");
             scope.$digest();
@@ -172,6 +173,17 @@
         }
       }
 		}]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("projects")
+		.component("projects", {
+			templateUrl: "app/components/projects/projects.html",
+		});
 
 })();
 "use strict";
@@ -196,17 +208,6 @@
           return age;
         }
       }
-		});
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
-		.module("projects")
-		.component("projects", {
-			templateUrl: "app/components/projects/projects.html",
 		});
 
 })();
