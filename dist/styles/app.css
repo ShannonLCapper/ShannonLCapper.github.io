@@ -105,7 +105,7 @@ navigation {
   .navbar li {
     display: block;
     width: 100%;
-    padding: 15px 0; }
+    padding: 0; }
     .navbar li.active {
       background-color: #6b933c; }
       .navbar li.active:first-of-type {
@@ -117,11 +117,11 @@ navigation {
       .navbar li.active a {
         background-color: transparent !important; }
   .navbar a {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    padding: 30px 0 !important;
     display: block;
     width: 100%;
-    color: white !important; }
+    color: white !important;
+    text-decoration: none; }
     .navbar a:hover, .navbar a:focus {
       color: #ddd8b0 !important; }
 
