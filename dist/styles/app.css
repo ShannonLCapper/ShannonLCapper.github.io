@@ -100,6 +100,8 @@ navigation {
         border-top-right-radius: 0; }
       .navbar.affix {
         top: 60px; } }
+  .navbar .icon-bar {
+    background-color: #6b933c !important; }
   .navbar li {
     display: block;
     width: 100%;
