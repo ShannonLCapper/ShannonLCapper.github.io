@@ -32,6 +32,7 @@
           function onResize() {
             scope.offset = calculateOffset();
             var $dataSpyEl = element.find( "[data-spy='affix']" );
+            return unless $dataSpyEl.length;
             $dataSpyEl.data("bs.affix").options.offset.top = scope.offset;
             $dataSpyEl.affix("checkPosition");
             scope.$digest();
