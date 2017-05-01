@@ -78,7 +78,7 @@
 
 (function() {
 	
-	angular.module("workExperience", [
+	angular.module("skills", [
 	]);
 
 })();
@@ -86,7 +86,7 @@
 
 (function() {
 	
-	angular.module("skills", [
+	angular.module("workExperience", [
 	]);
 
 })();
@@ -137,10 +137,7 @@
         link: function(scope, element, attrs) {
           function calculateOffset() {
             var windowHeight = $window.innerHeight;
-            console.log("window height: " + windowHeight);
             var navTop = parseInt(getCSS("top", ["navbar", "affix"]));
-            console.log("nav top: " + navTop);
-            console.log("new offset: " + (windowHeight - navTop));
             return windowHeight - navTop;
           }
 
@@ -158,11 +155,10 @@
           }
 
           function onResize() {
-            console.log("window resized");
             scope.offset = calculateOffset();
-            var dataSpyEl = element.find( "[data-spy='affix']" )
-            dataSpyEl.data("bs.affix").options.offsetTop = scope.offset;
-            dataSpyEl.affix("checkPosition");
+            var $dataSpyEl = element.find( "[data-spy='affix']" );
+            $dataSpyEl.data("bs.affix").options.offset.top = scope.offset;
+            $dataSpyEl.affix("checkPosition");
             scope.$digest();
           }
 
@@ -235,9 +231,9 @@
 (function() {
 	
 	angular
-		.module("workExperience")
-		.component("workExperience", {
-			templateUrl: "app/components/work-experience/work-experience.html",
+		.module("skills")
+		.component("skills", {
+			templateUrl: "app/components/skills/skills.html",
 		});
 
 })();
@@ -246,9 +242,9 @@
 (function() {
 	
 	angular
-		.module("skills")
-		.component("skills", {
-			templateUrl: "app/components/skills/skills.html",
+		.module("workExperience")
+		.component("workExperience", {
+			templateUrl: "app/components/work-experience/work-experience.html",
 		});
 
 })();
