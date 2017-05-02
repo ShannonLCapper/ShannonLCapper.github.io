@@ -31,17 +31,24 @@
 
           function onResize() {
             scope.offset = calculateOffset();
-            var $dataSpyEl = element.find( "[data-spy='affix']" );
-            if (!$dataSpyEl.length) return;
-            $dataSpyEl.data("bs.affix").options.offset.top = scope.offset;
-            $dataSpyEl.affix("checkPosition");
+            var $affixEl = element.find( "[data-spy='affix']" );
+            if (!$affixEl.length) return;
+            $affixEl.data("bs.affix").options.offset.top = scope.offset;
+            $affixEl.affix("checkPosition");
             scope.$digest();
           }
 
           function cleanUp() {
             angular.element($window).off("resize", onResize);
+            $("body").removeData("bs.scrollspy");
           }
 
+          var scrollSpySelector = ".navbar-collapse"
+
+          $("body").scrollspy({
+            target: scrollSpySelector,
+            offset: 50
+          });
           scope.offset = calculateOffset();
           angular.element($window).on("resize", onResize);
           scope.$on("$destroy", cleanUp);

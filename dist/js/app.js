@@ -19,26 +19,7 @@
 
 (function() {
 	
-	angular.module("collapseOnClick", [
-
-	]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular.module("collapseOnMobileBtn", [
-
-	]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular.module("scrollOnClick", [
-        
+	angular.module("education", [
 	]);
 
 })();
@@ -47,14 +28,6 @@
 (function() {
 	
 	angular.module("contact", [
-	]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular.module("education", [
 	]);
 
 })();
@@ -123,89 +96,27 @@
 
 (function() {
 	
-	angular
-		.module("collapseOnClick")
-		.directive("collapseOnClick", [function() {
-      return {
-        restrict: "A",
-        link: function(scope, element, attrs) {
-          var selectorToCollapse = attrs.collapseThis;
-          element.on("click", function() {
-            var $target;
-            if (selectorToCollapse) {
-              $target = $(selectorToCollapse);
-            } else {
-              $target = element;
-            }
-            if ($target.data("bs.collapse")) {
-              $target.collapse("hide");
-            }
-          })
-        }
-      }
-		}]);
+	angular.module("collapseOnClick", [
+
+	]);
 
 })();
 "use strict";
 
 (function() {
 	
-	angular
-		.module("collapseOnMobileBtn")
-		.directive("collapseOnMobileBtn", ["$compile", function($compile) {
-      return {
-        restrict: "A",
-        priority: 1011,
-        compile: function(element) {
-          element.removeAttr("collapse-on-mobile-btn");
-          element.addClass("collapse-on-mobile-btn");
-          element.attr("aria-expanded", element.hasClass("active"));
-          element.attr("data-toggle", "collapse");
-          return function(scope, element) {
-            element.on("click", function() {
-              element.toggleClass("active");
-            })
-          };
-        }
-      }
-		}]);
+	angular.module("scrollOnClick", [
+        
+	]);
 
 })();
 "use strict";
 
 (function() {
 	
-	angular
-		.module("scrollOnClick")
-		.directive("scrollOnClick", [function() {
-      return {
-        restrict: "A",
-        link: function(scope, element, attrs) {
-          var idToScroll = attrs.href || attrs.ngHref;
-          element.on("click", function(e) {
-            e.preventDefault();
-            var $target;
-            if (idToScroll) {
-              $target = $(idToScroll);
-            } else {
-              $target = element;
-            }
-            $("body").animate({scrollTop: $target.offset().top}, "slow");
-          })
-        }
-      }
-		}]);
+	angular.module("collapseOnMobileBtn", [
 
-})();
-"use strict";
-
-(function() {
-	
-	angular
-		.module("contact")
-		.component("contact", {
-			templateUrl: "app/components/contact/contact.html",
-		});
+	]);
 
 })();
 "use strict";
@@ -216,6 +127,17 @@
 		.module("education")
 		.component("education", {
 			templateUrl: "app/components/education/education.html",
+		});
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("contact")
+		.component("contact", {
+			templateUrl: "app/components/contact/contact.html",
 		});
 
 })();
@@ -239,12 +161,13 @@
 		.directive("navLink", [function() {
       return {
         restrict: "E",
+        replace: true,
         scope: {
           goesTo: "@"
         },
         transclude: true,
         //template needs <li> portion to make scrollspy work
-        template: "<li><a ng-href='{{goesTo}}' scroll-on-click collapse-on-click collapse-this='.navbar-collapse'><ng-transclude></a></li>",
+        template: "<a ng-href='{{goesTo}}' scroll-on-click collapse-on-click collapse-this='.navbar-collapse'><ng-transclude></a>",
         link: function(scope, element, attrs, parentCtrl) {
         }
       }
@@ -284,17 +207,24 @@
 
           function onResize() {
             scope.offset = calculateOffset();
-            var $dataSpyEl = element.find( "[data-spy='affix']" );
-            if (!$dataSpyEl.length) return;
-            $dataSpyEl.data("bs.affix").options.offset.top = scope.offset;
-            $dataSpyEl.affix("checkPosition");
+            var $affixEl = element.find( "[data-spy='affix']" );
+            if (!$affixEl.length) return;
+            $affixEl.data("bs.affix").options.offset.top = scope.offset;
+            $affixEl.affix("checkPosition");
             scope.$digest();
           }
 
           function cleanUp() {
             angular.element($window).off("resize", onResize);
+            $("body").removeData("bs.scrollspy");
           }
 
+          var scrollSpySelector = ".navbar-collapse"
+
+          $("body").scrollspy({
+            target: scrollSpySelector,
+            offset: 50
+          });
           scope.offset = calculateOffset();
           angular.element($window).on("resize", onResize);
           scope.$on("$destroy", cleanUp);
@@ -445,6 +375,84 @@
         templateUrl: "app/components/work-experience/work-experience.html",
         link: function(scope, element, attrs) {
           scope.jobs = jobs;
+        }
+      }
+		}]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("collapseOnClick")
+		.directive("collapseOnClick", [function() {
+      return {
+        restrict: "A",
+        link: function(scope, element, attrs) {
+          var selectorToCollapse = attrs.collapseThis;
+          element.on("click", function() {
+            var $target;
+            if (selectorToCollapse) {
+              $target = $(selectorToCollapse);
+            } else {
+              $target = element;
+            }
+            if ($target.data("bs.collapse")) {
+              $target.collapse("hide");
+            }
+          })
+        }
+      }
+		}]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("scrollOnClick")
+		.directive("scrollOnClick", [function() {
+      return {
+        restrict: "A",
+        link: function(scope, element, attrs) {
+          var idToScroll = attrs.href || attrs.ngHref;
+          element.on("click", function(e) {
+            e.preventDefault();
+            var $target;
+            if (idToScroll) {
+              $target = $(idToScroll);
+            } else {
+              $target = element;
+            }
+            $("body").animate({scrollTop: $target.offset().top}, "slow");
+          })
+        }
+      }
+		}]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("collapseOnMobileBtn")
+		.directive("collapseOnMobileBtn", ["$compile", function($compile) {
+      return {
+        restrict: "A",
+        priority: 1011,
+        compile: function(element) {
+          element.removeAttr("collapse-on-mobile-btn");
+          element.addClass("collapse-on-mobile-btn");
+          element.attr("aria-expanded", element.hasClass("active"));
+          element.attr("data-toggle", "collapse");
+          return function(scope, element) {
+            element.on("click", function() {
+              element.toggleClass("active");
+            })
+          };
         }
       }
 		}]);
