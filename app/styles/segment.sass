@@ -21,9 +21,9 @@ segment
 			min-height: 100vh
 		h2,
 		h3
-			color: $white
+			color: $color
 		p.lead
-			border-color: rgba($color, .3)
+			border-color: inherit
 
 	.wrapper
 		max-width: 1280px
@@ -50,10 +50,29 @@ segment
 		font-size: 3rem
 
 	p.lead
-		$spacing: 30px
+		$spacing: $separator-spacing
 		border-bottom: 1px solid rgba($secondary, .4)
 		padding-bottom: $spacing
 		margin-bottom: $spacing
+
+	ol
+		list-style: none
+		padding-left: 0
+		& > li
+			padding: 15px 0
+		h3
+			margin-top: 0
+			font-size: 2.2rem
+		h4
+			font-weight: bold
+			margin-top: 0
+			font-size: 1.5rem
+		ul
+			padding: 10px 0px 10px 20px
+
+		.location
+			color: $primary
+			font-size: .9em
 
 	q
 		&::before
@@ -65,4 +84,5 @@ segment
 		display: block
 		&::before
 			content: "\2014"
+
 
