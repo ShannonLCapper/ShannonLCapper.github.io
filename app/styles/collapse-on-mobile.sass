@@ -1,0 +1,24 @@
+@import "variables"
+@import "mixins"
+
+.collapse-on-mobile //forces the div to hide in xs/sm screens and show in >sm screen
+	display: none
+	@include respond-to($sm-bp)
+		display: block !important
+		height: auto !important
+	&.in,
+	&.collapsing
+		display: block
+
+.collapse-on-mobile-btn
+	border: none
+	background: transparent
+	color: inherit
+	@include respond-to($sm-bp)
+		display: none
+
+	.caret
+		transition: transform .3s
+	&.active
+		.caret
+			transform: rotate(-180deg)
