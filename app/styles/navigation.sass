@@ -38,16 +38,21 @@ navigation
 		display: block
 		width: 100%
 		padding: 0
+		transition: background-color .2s
 		&.active
-			background-color: $primary
-			&:first-of-type
-				border-top-left-radius: $nav-radius
-				border-top-right-radius: $nav-radius
-			&:last-of-type
-				border-bottom-left-radius: $nav-radius
-				border-bottom-right-radius: $nav-radius
+			background-color: $primary	
 			a
 				background-color: transparent !important
+
+	nav-link:first-of-type
+		li.active
+			border-top-left-radius: $nav-radius
+			border-top-right-radius: $nav-radius
+
+	nav-link:last-of-type
+		li.active
+			border-bottom-left-radius: $nav-radius
+			border-bottom-right-radius: $nav-radius
 
 	a
 		padding: 30px 0 !important
@@ -55,6 +60,7 @@ navigation
 		width: 100%
 		color: $white !important
 		text-decoration: none
+		transition: color .3s
 
 		&:hover,
 		&:focus
