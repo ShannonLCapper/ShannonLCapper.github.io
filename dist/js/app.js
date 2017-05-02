@@ -36,6 +36,15 @@
 
 (function() {
 	
+	angular.module("jumbotron", [
+		"scrollOnClick"
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
 	angular.module("navigation", [
     "scrollOnClick",
     "collapseOnClick" 
@@ -79,15 +88,6 @@
 
 (function() {
 	
-	angular.module("jumbotron", [
-		"scrollOnClick"
-	]);
-
-})();
-"use strict";
-
-(function() {
-	
 	angular.module("collapseOnClick", [
 
 	]);
@@ -99,15 +99,6 @@
 	
 	angular.module("workExperience", [
     "collapseOnMobileBtn"
-	]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular.module("preventBsStickyClicks", [
-
 	]);
 
 })();
@@ -133,6 +124,15 @@
 
 (function() {
 	
+	angular.module("preventBsStickyClicks", [
+
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
 	angular
 		.module("contact")
 		.component("contact", {
@@ -146,8 +146,41 @@
 	
 	angular
 		.module("education")
-		.component("education", {
-			templateUrl: "app/components/education/education.html",
+		.directive("education", [function() {
+      var educationLis = [
+        {
+          school: "California Polytechnic State University",
+          location: "San Luis Obispo, CA",
+          dateStart: new Date(2011, 8),
+          dateEnd: new Date(2015, 2),
+          educationType: "Bachelor of Science",
+          subject: "Biological Sciences",
+          description: [
+            "Cumulative GPA: 4.0",
+            "Graduated as the top-ranked student in the College of Science and Math"
+          ]
+        }
+      ];
+
+      return {
+        restrict: "E",
+        scope: {},
+        templateUrl: "app/components/education/education.html",
+        link: function(scope, element, attrs) {
+          scope.educationLis = educationLis;
+        }
+      }
+		}]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("jumbotron")
+		.component("jumbotron", {
+			templateUrl: "app/components/jumbotron/jumbotron.html",
 		});
 
 })();
@@ -300,17 +333,6 @@
 (function() {
 	
 	angular
-		.module("jumbotron")
-		.component("jumbotron", {
-			templateUrl: "app/components/jumbotron/jumbotron.html",
-		});
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
 		.module("collapseOnClick")
 		.directive("collapseOnClick", [function() {
       return {
@@ -422,31 +444,6 @@
 (function() {
 	
 	angular
-		.module("preventBsStickyClicks")
-		.directive("preventBsStickyClicks", [function() {
-      return {
-        restrict: "A",
-        link: function(scope, element, attrs) {
-          var elIsBody = (element[0] === $("body")[0]);
-          if (elIsBody) {
-            element.on("mouseup", "button, a[data-trigger!='focus'], input[type='submit'], input[type='reset']", function() {
-              $(this).blur();
-            });
-          } else {
-            element.on("mouseup", function() {
-              element.blur();
-            })
-          }
-        }
-      }
-		}]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
 		.module("collapseOnMobileBtn")
 		.directive("collapseOnMobileBtn", ["$compile", function($compile) {
       return {
@@ -488,6 +485,31 @@
             }
             $("body").animate({scrollTop: $target.offset().top}, "slow");
           })
+        }
+      }
+		}]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("preventBsStickyClicks")
+		.directive("preventBsStickyClicks", [function() {
+      return {
+        restrict: "A",
+        link: function(scope, element, attrs) {
+          var elIsBody = (element[0] === $("body")[0]);
+          if (elIsBody) {
+            element.on("mouseup", "button, a[data-trigger!='focus'], input[type='submit'], input[type='reset']", function() {
+              $(this).blur();
+            });
+          } else {
+            element.on("mouseup", function() {
+              element.blur();
+            })
+          }
         }
       }
 		}]);

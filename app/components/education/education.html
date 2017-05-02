@@ -3,3 +3,23 @@
   <q>The function of education is to teach one to think intensively and to think critically. Intelligence plus character - that is the goal of true education.</q>
   <cite>Martin Luther King, Jr.</cite>
 </p>
+<ol>
+  <li class="row" ng-repeat="eduLi in educationLis">
+    <div class="col-md-4">
+      <h3>{{eduLi.school}}</h3>
+      <p class="time-frame">{{eduLi.dateStart | date:"MMM yyyy"}} - {{(eduLi.dateEnd | date:"MMM yyyy") || "present"}}</p>
+    </div>
+    <div class="col-md-8">
+      <h4>{{eduLi.educationType}} - {{eduLi.subject}}</h4>
+      <div>
+        <ul>
+          <li ng-repeat="descriptor in eduLi.description">{{descriptor}}</li>
+        </ul>
+      </div>
+      <p class="location" ng-show="eduLi.location">
+        <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
+        {{eduLi.location}}
+      </p>
+    </div>
+  </li>
+</ol>
