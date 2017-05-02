@@ -3,6 +3,7 @@
 (function() {
 	
 	angular.module("interactiveResume", [
+        "preventBsStickyClicks",
 		"jumbotron",
         "navigation",
         "segment",

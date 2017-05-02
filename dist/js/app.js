@@ -3,6 +3,7 @@
 (function() {
 	
 	angular.module("interactiveResume", [
+        "preventBsStickyClicks",
 		"jumbotron",
         "navigation",
         "segment",
@@ -19,14 +20,6 @@
 
 (function() {
 	
-	angular.module("education", [
-	]);
-
-})();
-"use strict";
-
-(function() {
-	
 	angular.module("contact", [
 	]);
 
@@ -35,8 +28,7 @@
 
 (function() {
 	
-	angular.module("jumbotron", [
-		"scrollOnClick"
+	angular.module("education", [
 	]);
 
 })();
@@ -87,8 +79,8 @@
 
 (function() {
 	
-	angular.module("workExperience", [
-    "collapseOnMobileBtn"
+	angular.module("jumbotron", [
+		"scrollOnClick"
 	]);
 
 })();
@@ -105,8 +97,17 @@
 
 (function() {
 	
-	angular.module("scrollOnClick", [
-        
+	angular.module("workExperience", [
+    "collapseOnMobileBtn"
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular.module("preventBsStickyClicks", [
+
 	]);
 
 })();
@@ -123,11 +124,9 @@
 
 (function() {
 	
-	angular
-		.module("education")
-		.component("education", {
-			templateUrl: "app/components/education/education.html",
-		});
+	angular.module("scrollOnClick", [
+        
+	]);
 
 })();
 "use strict";
@@ -146,9 +145,9 @@
 (function() {
 	
 	angular
-		.module("jumbotron")
-		.component("jumbotron", {
-			templateUrl: "app/components/jumbotron/jumbotron.html",
+		.module("education")
+		.component("education", {
+			templateUrl: "app/components/education/education.html",
 		});
 
 })();
@@ -301,6 +300,44 @@
 (function() {
 	
 	angular
+		.module("jumbotron")
+		.component("jumbotron", {
+			templateUrl: "app/components/jumbotron/jumbotron.html",
+		});
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("collapseOnClick")
+		.directive("collapseOnClick", [function() {
+      return {
+        restrict: "A",
+        link: function(scope, element, attrs) {
+          var selectorToCollapse = attrs.collapseThis;
+          element.on("click", function() {
+            var $target;
+            if (selectorToCollapse) {
+              $target = $(selectorToCollapse);
+            } else {
+              $target = element;
+            }
+            if ($target.data("bs.collapse")) {
+              $target.collapse("hide");
+            }
+          })
+        }
+      }
+		}]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
 		.module("workExperience")
 		.directive("workExperience", [function() {
       var jobs = [
@@ -385,23 +422,46 @@
 (function() {
 	
 	angular
-		.module("collapseOnClick")
-		.directive("collapseOnClick", [function() {
+		.module("preventBsStickyClicks")
+		.directive("preventBsStickyClicks", [function() {
       return {
         restrict: "A",
         link: function(scope, element, attrs) {
-          var selectorToCollapse = attrs.collapseThis;
-          element.on("click", function() {
-            var $target;
-            if (selectorToCollapse) {
-              $target = $(selectorToCollapse);
-            } else {
-              $target = element;
-            }
-            if ($target.data("bs.collapse")) {
-              $target.collapse("hide");
-            }
-          })
+          var elIsBody = (element[0] === $("body")[0]);
+          if (elIsBody) {
+            element.on("mouseup", "button, a[data-trigger!='focus'], input[type='submit'], input[type='reset']", function() {
+              $(this).blur();
+            });
+          } else {
+            element.on("mouseup", function() {
+              element.blur();
+            })
+          }
+        }
+      }
+		}]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("collapseOnMobileBtn")
+		.directive("collapseOnMobileBtn", ["$compile", function($compile) {
+      return {
+        restrict: "A",
+        priority: 1011,
+        compile: function(element) {
+          element.removeAttr("collapse-on-mobile-btn");
+          element.addClass("collapse-on-mobile-btn");
+          element.attr("aria-expanded", element.hasClass("active"));
+          element.attr("data-toggle", "collapse");
+          return function(scope, element) {
+            element.on("click", function() {
+              element.toggleClass("active");
+            })
+          };
         }
       }
 		}]);
@@ -428,31 +488,6 @@
             }
             $("body").animate({scrollTop: $target.offset().top}, "slow");
           })
-        }
-      }
-		}]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
-		.module("collapseOnMobileBtn")
-		.directive("collapseOnMobileBtn", ["$compile", function($compile) {
-      return {
-        restrict: "A",
-        priority: 1011,
-        compile: function(element) {
-          element.removeAttr("collapse-on-mobile-btn");
-          element.addClass("collapse-on-mobile-btn");
-          element.attr("aria-expanded", element.hasClass("active"));
-          element.attr("data-toggle", "collapse");
-          return function(scope, element) {
-            element.on("click", function() {
-              element.toggleClass("active");
-            })
-          };
         }
       }
 		}]);
