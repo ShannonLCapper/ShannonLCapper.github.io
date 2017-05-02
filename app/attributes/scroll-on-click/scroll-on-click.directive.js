@@ -9,7 +9,8 @@
         restrict: "A",
         link: function(scope, element, attrs) {
           var idToScroll = attrs.href || attrs.ngHref;
-          element.on("click", function() {
+          element.on("click", function(e) {
+            e.preventDefault();
             var $target;
             if (idToScroll) {
               $target = $(idToScroll);
