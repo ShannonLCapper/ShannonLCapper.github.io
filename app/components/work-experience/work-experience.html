@@ -3,3 +3,29 @@
   <q>Far and away the best prize that life has to offer is the chance to work hard at work worth doing.</q>
   <cite>Theodore Roosevelt</cite>
 </p>
+<ol>
+  <li class="row" ng-repeat="job in jobs">
+    <div class="col-md-4">
+      <h3>{{job.title}}</h3>
+      <p class="time-frame">{{job.dateStart | date:"MMM yyyy"}} - {{(job.dateEnd | date:"MMM yyyy") || "present"}}</p>
+    </div>
+    <div class="col-md-8">
+      <h4 class="company">
+        {{job.company}}
+        <button type="button" data-target="#job{{$index}}Collapse" collapse-on-mobile-btn>
+          <span class="caret">
+          <span class="sr-only">Open job description</span>
+        </span>
+      </h4>
+      <div class="collapse-on-mobile" id="job{{$index}}Collapse">
+        <ul>
+          <li ng-repeat="descriptor in job.description">{{descriptor}}</li>
+        </ul>
+      </div>
+      <p class="location" ng-show="job.location">
+        <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
+        {{job.location}}
+      </p>
+    </div>
+  </li>
+</ol>

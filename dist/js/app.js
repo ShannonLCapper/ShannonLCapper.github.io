@@ -28,6 +28,15 @@
 
 (function() {
 	
+	angular.module("collapseOnMobileBtn", [
+
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
 	angular.module("scrollOnClick", [
         
 	]);
@@ -37,7 +46,7 @@
 
 (function() {
 	
-	angular.module("education", [
+	angular.module("contact", [
 	]);
 
 })();
@@ -45,7 +54,7 @@
 
 (function() {
 	
-	angular.module("contact", [
+	angular.module("education", [
 	]);
 
 })();
@@ -72,7 +81,7 @@
 
 (function() {
 	
-	angular.module("projects", [
+	angular.module("profile", [
 	]);
 
 })();
@@ -80,7 +89,7 @@
 
 (function() {
 	
-	angular.module("profile", [
+	angular.module("projects", [
 	]);
 
 })();
@@ -106,6 +115,7 @@
 (function() {
 	
 	angular.module("workExperience", [
+    "collapseOnMobileBtn"
 	]);
 
 })();
@@ -131,6 +141,31 @@
               $target.collapse("hide");
             }
           })
+        }
+      }
+		}]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("collapseOnMobileBtn")
+		.directive("collapseOnMobileBtn", ["$compile", function($compile) {
+      return {
+        restrict: "A",
+        priority: 1011,
+        compile: function(element) {
+          element.removeAttr("collapse-on-mobile-btn");
+          element.addClass("collapse-on-mobile-btn");
+          element.attr("aria-expanded", element.hasClass("active"));
+          element.attr("data-toggle", "collapse");
+          return function(scope, element) {
+            element.on("click", function() {
+              element.toggleClass("active");
+            })
+          };
         }
       }
 		}]);
@@ -167,9 +202,9 @@
 (function() {
 	
 	angular
-		.module("education")
-		.component("education", {
-			templateUrl: "app/components/education/education.html",
+		.module("contact")
+		.component("contact", {
+			templateUrl: "app/components/contact/contact.html",
 		});
 
 })();
@@ -178,9 +213,9 @@
 (function() {
 	
 	angular
-		.module("contact")
-		.component("contact", {
-			templateUrl: "app/components/contact/contact.html",
+		.module("education")
+		.component("education", {
+			templateUrl: "app/components/education/education.html",
 		});
 
 })();
@@ -273,17 +308,6 @@
 (function() {
 	
 	angular
-		.module("projects")
-		.component("projects", {
-			templateUrl: "app/components/projects/projects.html",
-		});
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
 		.module("profile")
 		.component("profile", {
 			templateUrl: "app/components/profile/profile.html",
@@ -301,6 +325,17 @@
           return age;
         }
       }
+		});
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("projects")
+		.component("projects", {
+			templateUrl: "app/components/projects/projects.html",
 		});
 
 })();
@@ -337,8 +372,81 @@
 	
 	angular
 		.module("workExperience")
-		.component("workExperience", {
-			templateUrl: "app/components/work-experience/work-experience.html",
-		});
+		.directive("workExperience", [function() {
+      var jobs = [
+        {
+          title: "Graphic Artist",
+          dateStart: new Date(2011, 0),
+          dateEnd: null,
+          company: "Freelance work for various businesses and individuals",
+          description: [
+            "Used Adobe Photoshop and Adobe Illustrator to design business logos, tattoos, and posters"
+          ],
+          location: null
+        },
+        {
+          title: "Exercise Technician",
+          dateStart: new Date(2015, 6),
+          dateEnd: new Date(2016, 6),
+          company: "G2 Sports + Physical Therapy",
+          description: [
+            "Instructed and oversaw patient exercises in an outpatient clinic",
+            "Performed modalities on patients, including electrical stimulation, ultrasound therapy, and traction"
+          ],
+          location: "Sammamish, WA"
+        },
+        {
+          title: "Library Student Assistant",
+          dateStart: new Date(2012, 8),
+          dateEnd: new Date(2015, 2),
+          company: "Cal Poly Kennedy Library PolyConnect Desk",
+          description: [
+            "Checked out laptops and AV equipment to students and staff",
+            "Assisted users with basic software and computer troubleshooting"
+          ],
+          location: "San Luis Obispo, CA"
+        },
+        {
+          title: "Anatomy Lab Teaching Assistant",
+          dateStart: new Date(2014, 8),
+          dateEnd: new Date(2015, 2),
+          company: "Allan Hancock Community College",
+          description: [
+            "Oversaw weekly open lab sessions, addressing anatomy-related inquiries and guiding student studies"
+          ],
+          location: "Santa Maria, CA"
+        },
+        {
+          title: "Biology Student Assistant",
+          dateStart: new Date(2014, 8),
+          dateEnd: new Date(2015, 2),
+          company: "Cal Poly Biological Sciences Department",
+          description: [
+            "Graded assignments for Principles of Physiology and Vertebrate Anatomy/Physiology courses"
+          ],
+          location: "San Luis Obispo, CA"
+        },
+        {
+          title: "Physical Therapy Aide",
+          dateStart: new Date(2013, 3),
+          dateEnd: new Date(2014, 5),
+          company: "San Luis Sports Therapy and Orthopedic Rehabilitation",
+          description: [
+            "Instructed and oversaw patient exercises in an outpatient clinic and performed patient modalities",
+            "Fulfilled office managerial duties, and assisted therapists in writing of medical paperwork"
+          ],
+          location: "Morro Bay, CA"
+        }
+      ];
+
+      return {
+        restrict: "E",
+        scope: {},
+        templateUrl: "app/components/work-experience/work-experience.html",
+        link: function(scope, element, attrs) {
+          scope.jobs = jobs;
+        }
+      }
+		}]);
 
 })();
