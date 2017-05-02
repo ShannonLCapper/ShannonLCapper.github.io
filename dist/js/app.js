@@ -37,14 +37,6 @@
 
 (function() {
 	
-	angular.module("contact", [
-	]);
-
-})();
-"use strict";
-
-(function() {
-	
 	angular.module("education", [
 	]);
 
@@ -53,8 +45,16 @@
 
 (function() {
 	
+	angular.module("contact", [
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
 	angular.module("jumbotron", [
-		
+		"scrollOnClick"
 	]);
 
 })();
@@ -72,7 +72,7 @@
 
 (function() {
 	
-	angular.module("profile", [
+	angular.module("projects", [
 	]);
 
 })();
@@ -80,7 +80,7 @@
 
 (function() {
 	
-	angular.module("projects", [
+	angular.module("profile", [
 	]);
 
 })();
@@ -147,7 +147,8 @@
         restrict: "A",
         link: function(scope, element, attrs) {
           var idToScroll = attrs.href || attrs.ngHref;
-          element.on("click", function() {
+          element.on("click", function(e) {
+            e.preventDefault();
             var $target;
             if (idToScroll) {
               $target = $(idToScroll);
@@ -166,9 +167,9 @@
 (function() {
 	
 	angular
-		.module("contact")
-		.component("contact", {
-			templateUrl: "app/components/contact/contact.html",
+		.module("education")
+		.component("education", {
+			templateUrl: "app/components/education/education.html",
 		});
 
 })();
@@ -177,9 +178,9 @@
 (function() {
 	
 	angular
-		.module("education")
-		.component("education", {
-			templateUrl: "app/components/education/education.html",
+		.module("contact")
+		.component("contact", {
+			templateUrl: "app/components/contact/contact.html",
 		});
 
 })();
@@ -272,6 +273,17 @@
 (function() {
 	
 	angular
+		.module("projects")
+		.component("projects", {
+			templateUrl: "app/components/projects/projects.html",
+		});
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
 		.module("profile")
 		.component("profile", {
 			templateUrl: "app/components/profile/profile.html",
@@ -289,17 +301,6 @@
           return age;
         }
       }
-		});
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
-		.module("projects")
-		.component("projects", {
-			templateUrl: "app/components/projects/projects.html",
 		});
 
 })();
