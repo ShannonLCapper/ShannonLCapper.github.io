@@ -20,8 +20,11 @@ h3 {
 
 .collapse-on-mobile-btn {
   border: none;
+  border-radius: 5px;
+  padding: 0px 6px 0px 5px;
   background: transparent;
-  color: inherit; }
+  color: inherit;
+  transition: background-color .3s; }
   @media (min-width: 768px) {
     .collapse-on-mobile-btn {
       display: none; } }
@@ -29,6 +32,8 @@ h3 {
     transition: transform .3s; }
   .collapse-on-mobile-btn.active .caret {
     transform: rotate(-180deg); }
+  .collapse-on-mobile-btn:hover, .collapse-on-mobile-btn:focus {
+    background-color: #eae7cf; }
 
 .contact-links {
   list-style: none;
