@@ -1,0 +1,45 @@
+@import "variables"
+@import "mixins"
+
+
+.contact-links
+	list-style: none
+	margin: 0
+	padding: 0
+	padding-bottom: $separator-spacing
+	border-bottom: 1px solid //defaults to text color
+
+	li
+		display: inline-block
+		vertical-align: top
+		margin: 0
+		padding: 0
+		width: 100%
+		@include respond-to($md-bp)
+			width: 49.5% //for some reason, 50% doesn't fit two li's on the same line
+	a
+		text-decoration: none
+		padding: 15px 0px
+		padding-left: 10px
+		display: table
+		width: 100%
+		transition: color .3s
+
+		&:link,
+		&:visited
+			color: inherit
+
+		&:hover,
+		&:focus
+			color: $white
+			text-decoration: none
+
+	i
+		display: table-cell
+		vertical-align: middle
+		width: 1.5em
+		text-align: center
+
+	.link-text
+		display: table-cell
+		vertical-align: middle
