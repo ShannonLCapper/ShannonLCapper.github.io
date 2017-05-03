@@ -11,20 +11,6 @@
 		display: block
 
 .collapse-on-mobile-btn
-	border: none
-	border-radius: 5px
-	padding: 0px 6px 0px 5px
-	background: transparent
-	color: inherit
-	transition: background-color .3s
 	@include respond-to($sm-bp)
 		display: none
-
-	.caret
-		transition: transform .3s
-	&.active
-		.caret
-			transform: rotate(-180deg)
-	&:hover,
-	&:focus
-		background-color: $light
+	@include rotate-caret-on-active
