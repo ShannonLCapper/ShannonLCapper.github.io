@@ -38,9 +38,7 @@ h3 {
 .contact-links {
   list-style: none;
   margin: 0;
-  padding: 0;
-  padding-bottom: 30px;
-  border-bottom: 1px solid; }
+  padding: 0; }
   .contact-links li {
     display: inline-block;
     vertical-align: top;
@@ -253,11 +251,6 @@ segment h2 {
 segment h3 {
   font-size: 3rem; }
 
-segment p.lead {
-  border-bottom: 1px solid rgba(50, 15, 30, 0.4);
-  padding-bottom: 30px;
-  margin-bottom: 30px; }
-
 segment ol {
   list-style: none;
   padding-left: 0; }
@@ -286,3 +279,11 @@ segment cite {
   display: block; }
   segment cite::before {
     content: "\2014"; }
+
+segment .with-separator::after {
+  content: "";
+  display: block;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid;
+  opacity: .3; }
