@@ -4,16 +4,16 @@
 	
 	angular
 		.module("jumbotron")
-		.directive("jumbotron", function() {
+		.directive("jumbotron", ["detectMobileService", function(detectMobileService) {
       return {
         restrict: "E",
-        replace: true,
         scope: {},
         templateUrl: "app/components/jumbotron/jumbotron.html",
         link: function(scope, element, attrs) {
-          // element.backstretch();
+          // element.find(".jumbotron").backstretch();
+          scope.isMobile = detectMobileService.isMobile()
         }
       };
-		});
+		}]);
 
 })();

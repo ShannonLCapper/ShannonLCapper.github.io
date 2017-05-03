@@ -82,6 +82,8 @@ h3 {
   background-size: cover;
   background-position: center center;
   background-attachment: fixed; }
+  .jumbotron.mobile {
+    background-attachment: scroll; }
   .jumbotron::after {
     content: "";
     display: block;

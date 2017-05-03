@@ -3,7 +3,8 @@
 (function() {
 	
 	angular.module("jumbotron", [
-		"scrollOnClick"
+		"scrollOnClick",
+    "detectMobileService"
 	]);
 
 })();
