@@ -74,14 +74,15 @@ h3 {
   width: 100vw;
   display: table-cell;
   vertical-align: middle;
+  color: white;
+  position: relative;
+  overflow: hidden;
   background-image: url("/app/images/jumbotron/flowers.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  color: white;
-  position: relative;
-  overflow: hidden; }
-  .jumbotron::before {
+  background-attachment: fixed; }
+  .jumbotron::after {
     content: "";
     display: block;
     position: absolute;

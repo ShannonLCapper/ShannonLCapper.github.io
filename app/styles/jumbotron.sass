@@ -10,16 +10,16 @@
 	width: 100vw
 	display: table-cell
 	vertical-align: middle
+	color: $jumbo-color
+	position: relative
+	overflow: hidden
 	background-image: url("/app/images/jumbotron/flowers.jpg")
 	background-repeat: no-repeat
 	background-size: cover
 	background-position: center center
-	// background-attachment: fixed
-	color: $jumbo-color
-	position: relative
-	overflow: hidden
+	background-attachment: fixed
 
-	&::before //add an overlay on the background image
+	&::after //add an overlay on the background image
 		content: ""
 		display: block
 		position: absolute
