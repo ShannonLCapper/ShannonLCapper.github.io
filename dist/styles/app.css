@@ -200,6 +200,17 @@ navigation {
       max-height: calc(100vh - 120px);
       overflow-y: auto; } }
 
+profile .profile-pic {
+  border: 15px solid #eae7cf;
+  max-width: 300px;
+  width: 100%; }
+
+profile .row {
+  text-align: center; }
+  @media (min-width: 768px) {
+    profile .row {
+      text-align: left; } }
+
 segment section {
   padding: 60px 20px; }
 
@@ -262,7 +273,6 @@ segment ol {
   segment ol ul {
     padding: 10px 0px 10px 20px; }
   segment ol .location {
-    color: #6b933c;
     font-size: .9em; }
 
 segment q::before {

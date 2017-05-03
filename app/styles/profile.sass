@@ -1,0 +1,12 @@
+@import "variables"
+@import "mixins"
+
+profile
+	.profile-pic
+		border: 15px solid $light
+		max-width: 300px
+		width: 100%
+	.row
+		text-align: center
+		@include respond-to($sm-bp)
+			text-align: left
