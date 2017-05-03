@@ -9,8 +9,8 @@
         restrict: "E",
         scope: {},
         templateUrl: "app/components/profile/profile.html",
-        controller: function profileCtrl() {
-          this.calcAge = function calculateAge(birthMonth, birthDay, birthYear) {
+        link: function(scope, element, attrs) {
+          scope.calcAge = function calculateAge(birthMonth, birthDay, birthYear) {
             var todayDate = new Date();
             var todayYear = todayDate.getFullYear();
             var todayMonth = todayDate.getMonth();
