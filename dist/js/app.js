@@ -20,6 +20,42 @@
 
 (function() {
 	
+	angular.module("collapseOnClick", [
+
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular.module("preventBsStickyClicks", [
+
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular.module("collapseOnMobileBtn", [
+
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular.module("scrollOnClick", [
+        
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
 	angular.module("contact", [
     "sectionHeader"
 	]);
@@ -75,8 +111,7 @@
 
 (function() {
 	
-	angular.module("segment", [
-
+	angular.module("sectionHeader", [
 	]);
 
 })();
@@ -84,7 +119,8 @@
 
 (function() {
 	
-	angular.module("sectionHeader", [
+	angular.module("segment", [
+
 	]);
 
 })();
@@ -111,36 +147,103 @@
 
 (function() {
 	
-	angular.module("collapseOnClick", [
-
-	]);
+	angular
+		.module("collapseOnClick")
+		.directive("collapseOnClick", [function() {
+      return {
+        restrict: "A",
+        link: function(scope, element, attrs) {
+          var selectorToCollapse = attrs.collapseThis;
+          element.on("click", function() {
+            var $target;
+            if (selectorToCollapse) {
+              $target = $(selectorToCollapse);
+            } else {
+              $target = element;
+            }
+            if ($target.data("bs.collapse")) {
+              $target.collapse("hide");
+            }
+          })
+        }
+      }
+		}]);
 
 })();
 "use strict";
 
 (function() {
 	
-	angular.module("collapseOnMobileBtn", [
-
-	]);
+	angular
+		.module("preventBsStickyClicks")
+		.directive("preventBsStickyClicks", [function() {
+      return {
+        restrict: "A",
+        link: function(scope, element, attrs) {
+          var elIsBody = (element[0] === $("body")[0]);
+          if (elIsBody) {
+            element.on("mouseup", "button, a[data-trigger!='focus'], input[type='submit'], input[type='reset']", function() {
+              $(this).blur();
+            });
+          } else {
+            element.on("mouseup", function() {
+              element.blur();
+            })
+          }
+        }
+      }
+		}]);
 
 })();
 "use strict";
 
 (function() {
 	
-	angular.module("preventBsStickyClicks", [
-
-	]);
+	angular
+		.module("collapseOnMobileBtn")
+		.directive("collapseOnMobileBtn", ["$compile", function($compile) {
+      return {
+        restrict: "A",
+        priority: 1011,
+        compile: function(element) {
+          element.removeAttr("collapse-on-mobile-btn");
+          element.addClass("collapse-on-mobile-btn");
+          element.attr("aria-expanded", element.hasClass("active"));
+          element.attr("data-toggle", "collapse");
+          return function(scope, element) {
+            element.on("click", function() {
+              element.toggleClass("active");
+            })
+          };
+        }
+      }
+		}]);
 
 })();
 "use strict";
 
 (function() {
 	
-	angular.module("scrollOnClick", [
-        
-	]);
+	angular
+		.module("scrollOnClick")
+		.directive("scrollOnClick", [function() {
+      return {
+        restrict: "A",
+        link: function(scope, element, attrs) {
+          var idToScroll = attrs.href || attrs.ngHref;
+          element.on("click", function(e) {
+            e.preventDefault();
+            var $target;
+            if (idToScroll) {
+              $target = $(idToScroll);
+            } else {
+              $target = element;
+            }
+            $("body").animate({scrollTop: $target.offset().top}, "slow");
+          })
+        }
+      }
+		}]);
 
 })();
 "use strict";
@@ -295,8 +398,8 @@
         restrict: "E",
         scope: {},
         templateUrl: "app/components/profile/profile.html",
-        controller: function profileCtrl() {
-          this.calcAge = function calculateAge(birthMonth, birthDay, birthYear) {
+        link: function(scope, element, attrs) {
+          scope.calcAge = function calculateAge(birthMonth, birthDay, birthYear) {
             var todayDate = new Date();
             var todayYear = todayDate.getFullYear();
             var todayMonth = todayDate.getMonth();
@@ -333,22 +436,6 @@
 (function() {
 	
 	angular
-		.module("segment")
-		.directive("segment", function() {
-      return {
-        restrict: "E",
-        transclude: true,
-        scope: {},
-        template: "<section><div class='wrapper'><ng-transclude></ng-transclude></div></section>"
-      }
-		});
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
 		.module("sectionHeader")
 		.directive("sectionHeader", function() {
       return {
@@ -371,12 +458,119 @@
 (function() {
 	
 	angular
+		.module("segment")
+		.directive("segment", function() {
+      return {
+        restrict: "E",
+        transclude: true,
+        scope: {},
+        template: "<section><div class='wrapper'><ng-transclude></ng-transclude></div></section>"
+      }
+		});
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
 		.module("skills")
 		.directive("skills", function() {
+      var skillGroups = [
+        {
+          title: "Web Technologies",
+          lis: [
+            {
+              name: "HTML5",
+              symbol: "fa fa-html5"
+            },
+            {
+              name: "CSS3",
+              symbol: "fa fa-css3"
+            },
+            {
+              name: "JavaScript",
+            },
+            {
+              name: "jQuery",
+            },
+            {
+              name: "AngularJS",
+            },
+            {
+              name: "Bootstrap",
+            },
+            {
+              name: "Sass",
+            },
+            {
+              name: "Sinatra",
+            },
+            {
+              name: "AJAX",
+            },
+            {
+              name: "JSON",
+            },
+          ]
+        },
+        {
+          title: "Programming Languages",
+          lis: [
+            {
+              name: "Ruby",
+            },
+            {
+              name: "JavaScript",
+            }
+          ]
+        },
+        {
+          title: "Databases",
+          lis: [
+            {
+              name: "SQL",
+            },
+            {
+              name: "MongoDB",
+            },
+            {
+              name: "DynamoDB",
+            },
+            {
+              name: "Redis",
+            }
+          ]
+        },
+        {
+          title: "Tools",
+          lis: [
+            {
+              name: "Git",
+              symbol: "fa fa-github"
+            },
+            {
+              name: "Adobe Photoshop",
+            },
+            {
+              name: "Adobe Illustrator",
+            }
+          ]
+        }
+      ]
       return {
         restrict: "E",
         scope: {},
         templateUrl: "app/components/skills/skills.html",
+        link: function(scope, element, attrs) {
+          scope.skillGroups = skillGroups;
+          skillGroups.forEach(function(skillGroup) {
+            var len = skillGroup.lis.length;
+            var mid = len / 2 + .5; // the .5 is to make the left column have the spare if there is an odd number
+            skillGroup.left = skillGroup.lis.slice(0, mid);
+            skillGroup.right = skillGroup.lis.slice(mid, len);
+          });
+        }
       }
 			
 		});
@@ -461,109 +655,6 @@
         templateUrl: "app/components/work-experience/work-experience.html",
         link: function(scope, element, attrs) {
           scope.jobs = jobs;
-        }
-      }
-		}]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
-		.module("collapseOnClick")
-		.directive("collapseOnClick", [function() {
-      return {
-        restrict: "A",
-        link: function(scope, element, attrs) {
-          var selectorToCollapse = attrs.collapseThis;
-          element.on("click", function() {
-            var $target;
-            if (selectorToCollapse) {
-              $target = $(selectorToCollapse);
-            } else {
-              $target = element;
-            }
-            if ($target.data("bs.collapse")) {
-              $target.collapse("hide");
-            }
-          })
-        }
-      }
-		}]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
-		.module("collapseOnMobileBtn")
-		.directive("collapseOnMobileBtn", ["$compile", function($compile) {
-      return {
-        restrict: "A",
-        priority: 1011,
-        compile: function(element) {
-          element.removeAttr("collapse-on-mobile-btn");
-          element.addClass("collapse-on-mobile-btn");
-          element.attr("aria-expanded", element.hasClass("active"));
-          element.attr("data-toggle", "collapse");
-          return function(scope, element) {
-            element.on("click", function() {
-              element.toggleClass("active");
-            })
-          };
-        }
-      }
-		}]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
-		.module("preventBsStickyClicks")
-		.directive("preventBsStickyClicks", [function() {
-      return {
-        restrict: "A",
-        link: function(scope, element, attrs) {
-          var elIsBody = (element[0] === $("body")[0]);
-          if (elIsBody) {
-            element.on("mouseup", "button, a[data-trigger!='focus'], input[type='submit'], input[type='reset']", function() {
-              $(this).blur();
-            });
-          } else {
-            element.on("mouseup", function() {
-              element.blur();
-            })
-          }
-        }
-      }
-		}]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
-		.module("scrollOnClick")
-		.directive("scrollOnClick", [function() {
-      return {
-        restrict: "A",
-        link: function(scope, element, attrs) {
-          var idToScroll = attrs.href || attrs.ngHref;
-          element.on("click", function(e) {
-            e.preventDefault();
-            var $target;
-            if (idToScroll) {
-              $target = $(idToScroll);
-            } else {
-              $target = element;
-            }
-            $("body").animate({scrollTop: $target.offset().top}, "slow");
-          })
         }
       }
 		}]);

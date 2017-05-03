@@ -5,3 +5,14 @@
     <cite>Wilbur Wright</cite>
   </section-subtitle>
 </section-header>
+
+<div ng-repeat="skillGroup in skillGroups">
+  <h3>{{skillGroup.title}}</h3>
+  <ul ng-class="{'with-separator': !$last}" class="row">
+    <div class="col-sm-6" ng-repeat="skillGroupCol in [skillGroup.left, skillGroup.right]">
+      <li ng-repeat="skill in skillGroupCol"> 
+        {{skill.name}}
+      </li>
+    </div>
+  </ul>
+</div>

@@ -292,3 +292,8 @@ segment .with-separator::after {
   margin-bottom: 30px;
   border-bottom: 1px solid;
   opacity: .3; }
+
+skills {
+  text-align: center; }
+  skills li {
+    font-size: 1.8rem; }
