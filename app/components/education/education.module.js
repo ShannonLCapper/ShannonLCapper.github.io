@@ -3,6 +3,7 @@
 (function() {
 	
 	angular.module("education", [
+    "sectionHeader"
 	]);
 
 })();

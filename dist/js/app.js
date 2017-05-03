@@ -21,6 +21,7 @@
 (function() {
 	
 	angular.module("contact", [
+    "sectionHeader"
 	]);
 
 })();
@@ -29,6 +30,7 @@
 (function() {
 	
 	angular.module("education", [
+    "sectionHeader"
 	]);
 
 })();
@@ -56,6 +58,7 @@
 (function() {
 	
 	angular.module("profile", [
+    "sectionHeader"
 	]);
 
 })();
@@ -64,6 +67,7 @@
 (function() {
 	
 	angular.module("projects", [
+    "sectionHeader"
 	]);
 
 })();
@@ -80,7 +84,26 @@
 
 (function() {
 	
+	angular.module("sectionHeader", [
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
 	angular.module("skills", [
+    "sectionHeader"
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular.module("workExperience", [
+    "collapseOnMobileBtn",
+    "sectionHeader"
 	]);
 
 })();
@@ -97,8 +120,8 @@
 
 (function() {
 	
-	angular.module("workExperience", [
-    "collapseOnMobileBtn"
+	angular.module("collapseOnMobileBtn", [
+
 	]);
 
 })();
@@ -106,7 +129,7 @@
 
 (function() {
 	
-	angular.module("collapseOnMobileBtn", [
+	angular.module("preventBsStickyClicks", [
 
 	]);
 
@@ -124,19 +147,15 @@
 
 (function() {
 	
-	angular.module("preventBsStickyClicks", [
-
-	]);
-
-})();
-"use strict";
-
-(function() {
-	
 	angular
 		.module("contact")
-		.component("contact", {
-			templateUrl: "app/components/contact/contact.html",
+		.directive("contact", function(){
+      return {
+        restrict: "E",
+        scope: {},
+        templateUrl: "app/components/contact/contact.html",
+      }
+			
 		});
 
 })();
@@ -271,22 +290,26 @@
 	
 	angular
 		.module("profile")
-		.component("profile", {
-			templateUrl: "app/components/profile/profile.html",
-      controller: function profileCtrl() {
-        this.calcAge = function calculateAge(birthMonth, birthDay, birthYear) {
-          var todayDate = new Date();
-          var todayYear = todayDate.getFullYear();
-          var todayMonth = todayDate.getMonth();
-          var todayDay = todayDate.getDate();
-          var age = todayYear - birthYear; 
+		.directive("profile", function() {
+      return {
+        restrict: "E",
+        scope: {},
+        templateUrl: "app/components/profile/profile.html",
+        controller: function profileCtrl() {
+          this.calcAge = function calculateAge(birthMonth, birthDay, birthYear) {
+            var todayDate = new Date();
+            var todayYear = todayDate.getFullYear();
+            var todayMonth = todayDate.getMonth();
+            var todayDay = todayDate.getDate();
+            var age = todayYear - birthYear; 
 
-          if (todayMonth < birthMonth - 1) age--;
-          if (birthMonth - 1 == todayMonth && todayDay < birthDay) age--;
-          
-          return age;
+            if (todayMonth < birthMonth - 1) age--;
+            if (birthMonth - 1 == todayMonth && todayDay < birthDay) age--;
+            
+            return age;
+          }
         }
-      }
+      };
 		});
 
 })();
@@ -296,8 +319,12 @@
 	
 	angular
 		.module("projects")
-		.component("projects", {
-			templateUrl: "app/components/projects/projects.html",
+		.directive("projects", function() {
+      return {
+        restrict: "E",
+        scope: {},
+        templateUrl: "app/components/projects/projects.html",
+      };
 		});
 
 })();
@@ -322,9 +349,20 @@
 (function() {
 	
 	angular
-		.module("skills")
-		.component("skills", {
-			templateUrl: "app/components/skills/skills.html",
+		.module("sectionHeader")
+		.directive("sectionHeader", function() {
+      return {
+        restrict: "E",
+        scope: {},
+        transclude: {
+          title: "sectionTitle",
+          subtitle: "sectionSubtitle"
+        },
+        template: [
+          "<h2 ng-transclude='title'></h2>",
+          "<p class='lead with-separator' ng-transclude='subtitle'></p>"
+        ].join('')
+      }
 		});
 
 })();
@@ -333,26 +371,15 @@
 (function() {
 	
 	angular
-		.module("collapseOnClick")
-		.directive("collapseOnClick", [function() {
+		.module("skills")
+		.directive("skills", function() {
       return {
-        restrict: "A",
-        link: function(scope, element, attrs) {
-          var selectorToCollapse = attrs.collapseThis;
-          element.on("click", function() {
-            var $target;
-            if (selectorToCollapse) {
-              $target = $(selectorToCollapse);
-            } else {
-              $target = element;
-            }
-            if ($target.data("bs.collapse")) {
-              $target.collapse("hide");
-            }
-          })
-        }
+        restrict: "E",
+        scope: {},
+        templateUrl: "app/components/skills/skills.html",
       }
-		}]);
+			
+		});
 
 })();
 "use strict";
@@ -444,6 +471,33 @@
 (function() {
 	
 	angular
+		.module("collapseOnClick")
+		.directive("collapseOnClick", [function() {
+      return {
+        restrict: "A",
+        link: function(scope, element, attrs) {
+          var selectorToCollapse = attrs.collapseThis;
+          element.on("click", function() {
+            var $target;
+            if (selectorToCollapse) {
+              $target = $(selectorToCollapse);
+            } else {
+              $target = element;
+            }
+            if ($target.data("bs.collapse")) {
+              $target.collapse("hide");
+            }
+          })
+        }
+      }
+		}]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
 		.module("collapseOnMobileBtn")
 		.directive("collapseOnMobileBtn", ["$compile", function($compile) {
       return {
@@ -459,6 +513,31 @@
               element.toggleClass("active");
             })
           };
+        }
+      }
+		}]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("preventBsStickyClicks")
+		.directive("preventBsStickyClicks", [function() {
+      return {
+        restrict: "A",
+        link: function(scope, element, attrs) {
+          var elIsBody = (element[0] === $("body")[0]);
+          if (elIsBody) {
+            element.on("mouseup", "button, a[data-trigger!='focus'], input[type='submit'], input[type='reset']", function() {
+              $(this).blur();
+            });
+          } else {
+            element.on("mouseup", function() {
+              element.blur();
+            })
+          }
         }
       }
 		}]);
@@ -485,31 +564,6 @@
             }
             $("body").animate({scrollTop: $target.offset().top}, "slow");
           })
-        }
-      }
-		}]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
-		.module("preventBsStickyClicks")
-		.directive("preventBsStickyClicks", [function() {
-      return {
-        restrict: "A",
-        link: function(scope, element, attrs) {
-          var elIsBody = (element[0] === $("body")[0]);
-          if (elIsBody) {
-            element.on("mouseup", "button, a[data-trigger!='focus'], input[type='submit'], input[type='reset']", function() {
-              $(this).blur();
-            });
-          } else {
-            element.on("mouseup", function() {
-              element.blur();
-            })
-          }
         }
       }
 		}]);

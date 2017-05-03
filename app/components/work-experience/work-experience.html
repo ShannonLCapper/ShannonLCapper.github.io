@@ -1,8 +1,11 @@
-<h2>Work Experience</h2>
-<p class="lead with-separator">
-  <q>Far and away the best prize that life has to offer is the chance to work hard at work worth doing.</q>
-  <cite>Theodore Roosevelt</cite>
-</p>
+<section-header>
+  <section-title>Work Experience</section-title>
+  <section-subtitle>
+    <q>Far and away the best prize that life has to offer is the chance to work hard at work worth doing.</q>
+    <cite>Theodore Roosevelt</cite>
+  </section-subtitle>
+</section-header>
+
 <ol>
   <li class="row" ng-repeat="job in jobs">
     <div class="col-md-4">
@@ -13,9 +16,9 @@
       <h4 class="company">
         {{job.company}}
         <button type="button" data-target="#job{{$index}}Collapse" collapse-on-mobile-btn>
-          <span class="caret">
+          <span class="caret"></span>
           <span class="sr-only">Open job description</span>
-        </span>
+        </button>
       </h4>
       <div class="collapse-on-mobile" id="job{{$index}}Collapse">
         <ul>

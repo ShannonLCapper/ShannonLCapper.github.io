@@ -240,8 +240,7 @@ segment h3 {
   color: #6b933c;
   font-weight: normal; }
 
-segment h2,
-segment p.lead {
+segment section-header {
   text-align: center; }
 
 segment h2 {

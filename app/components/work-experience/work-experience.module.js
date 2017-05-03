@@ -3,7 +3,8 @@
 (function() {
 	
 	angular.module("workExperience", [
-    "collapseOnMobileBtn"
+    "collapseOnMobileBtn",
+    "sectionHeader"
 	]);
 
 })();
