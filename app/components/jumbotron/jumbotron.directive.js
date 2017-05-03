@@ -10,8 +10,7 @@
         scope: {},
         templateUrl: "app/components/jumbotron/jumbotron.html",
         link: function(scope, element, attrs) {
-          // element.find(".jumbotron").backstretch();
-          scope.isMobile = detectMobileService.isMobile()
+          scope.isMobile = detectMobileService.isMobile();
         }
       };
 		}]);
