@@ -10,7 +10,7 @@
         link: function(scope, element, attrs) {
           var idToScroll = attrs.href || attrs.ngHref;
           element.on("click", function(e) {
-            e.preventDefault();
+            // e.preventDefault();
             var $target;
             if (idToScroll) {
               $target = $(idToScroll);

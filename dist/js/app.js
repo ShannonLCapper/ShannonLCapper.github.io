@@ -20,6 +20,42 @@
 
 (function() {
 	
+	angular.module("collapseOnClick", [
+
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular.module("collapseOnMobileBtn", [
+
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular.module("preventBsStickyClicks", [
+
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular.module("scrollOnClick", [
+        
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
 	angular.module("contact", [
     "sectionHeader"
 	]);
@@ -111,36 +147,103 @@
 
 (function() {
 	
-	angular.module("collapseOnClick", [
-
-	]);
+	angular
+		.module("collapseOnClick")
+		.directive("collapseOnClick", [function() {
+      return {
+        restrict: "A",
+        link: function(scope, element, attrs) {
+          var selectorToCollapse = attrs.collapseThis;
+          element.on("click", function() {
+            var $target;
+            if (selectorToCollapse) {
+              $target = $(selectorToCollapse);
+            } else {
+              $target = element;
+            }
+            if ($target.data("bs.collapse")) {
+              $target.collapse("hide");
+            }
+          })
+        }
+      }
+		}]);
 
 })();
 "use strict";
 
 (function() {
 	
-	angular.module("collapseOnMobileBtn", [
-
-	]);
+	angular
+		.module("collapseOnMobileBtn")
+		.directive("collapseOnMobileBtn", ["$compile", function($compile) {
+      return {
+        restrict: "A",
+        priority: 1011,
+        compile: function(element) {
+          element.removeAttr("collapse-on-mobile-btn");
+          element.addClass("collapse-on-mobile-btn");
+          element.attr("aria-expanded", element.hasClass("active"));
+          element.attr("data-toggle", "collapse");
+          return function(scope, element) {
+            element.on("click", function() {
+              element.toggleClass("active");
+            })
+          };
+        }
+      }
+		}]);
 
 })();
 "use strict";
 
 (function() {
 	
-	angular.module("preventBsStickyClicks", [
-
-	]);
+	angular
+		.module("preventBsStickyClicks")
+		.directive("preventBsStickyClicks", [function() {
+      return {
+        restrict: "A",
+        link: function(scope, element, attrs) {
+          var elIsBody = (element[0] === $("body")[0]);
+          if (elIsBody) {
+            element.on("mouseup", "button, a[data-trigger!='focus'], input[type='submit'], input[type='reset']", function() {
+              $(this).blur();
+            });
+          } else {
+            element.on("mouseup", function() {
+              element.blur();
+            })
+          }
+        }
+      }
+		}]);
 
 })();
 "use strict";
 
 (function() {
 	
-	angular.module("scrollOnClick", [
-        
-	]);
+	angular
+		.module("scrollOnClick")
+		.directive("scrollOnClick", [function() {
+      return {
+        restrict: "A",
+        link: function(scope, element, attrs) {
+          var idToScroll = attrs.href || attrs.ngHref;
+          element.on("click", function(e) {
+            // e.preventDefault();
+            var $target;
+            if (idToScroll) {
+              $target = $(idToScroll);
+            } else {
+              $target = element;
+            }
+            $("body").animate({scrollTop: $target.offset().top}, "slow");
+          })
+        }
+      }
+		}]);
 
 })();
 "use strict";
@@ -555,109 +658,6 @@
         templateUrl: "app/components/work-experience/work-experience.html",
         link: function(scope, element, attrs) {
           scope.jobs = jobs;
-        }
-      }
-		}]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
-		.module("collapseOnClick")
-		.directive("collapseOnClick", [function() {
-      return {
-        restrict: "A",
-        link: function(scope, element, attrs) {
-          var selectorToCollapse = attrs.collapseThis;
-          element.on("click", function() {
-            var $target;
-            if (selectorToCollapse) {
-              $target = $(selectorToCollapse);
-            } else {
-              $target = element;
-            }
-            if ($target.data("bs.collapse")) {
-              $target.collapse("hide");
-            }
-          })
-        }
-      }
-		}]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
-		.module("collapseOnMobileBtn")
-		.directive("collapseOnMobileBtn", ["$compile", function($compile) {
-      return {
-        restrict: "A",
-        priority: 1011,
-        compile: function(element) {
-          element.removeAttr("collapse-on-mobile-btn");
-          element.addClass("collapse-on-mobile-btn");
-          element.attr("aria-expanded", element.hasClass("active"));
-          element.attr("data-toggle", "collapse");
-          return function(scope, element) {
-            element.on("click", function() {
-              element.toggleClass("active");
-            })
-          };
-        }
-      }
-		}]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
-		.module("preventBsStickyClicks")
-		.directive("preventBsStickyClicks", [function() {
-      return {
-        restrict: "A",
-        link: function(scope, element, attrs) {
-          var elIsBody = (element[0] === $("body")[0]);
-          if (elIsBody) {
-            element.on("mouseup", "button, a[data-trigger!='focus'], input[type='submit'], input[type='reset']", function() {
-              $(this).blur();
-            });
-          } else {
-            element.on("mouseup", function() {
-              element.blur();
-            })
-          }
-        }
-      }
-		}]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
-		.module("scrollOnClick")
-		.directive("scrollOnClick", [function() {
-      return {
-        restrict: "A",
-        link: function(scope, element, attrs) {
-          var idToScroll = attrs.href || attrs.ngHref;
-          element.on("click", function(e) {
-            e.preventDefault();
-            var $target;
-            if (idToScroll) {
-              $target = $(idToScroll);
-            } else {
-              $target = element;
-            }
-            $("body").animate({scrollTop: $target.offset().top}, "slow");
-          })
         }
       }
 		}]);
