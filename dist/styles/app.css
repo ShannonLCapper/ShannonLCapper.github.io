@@ -144,7 +144,7 @@ navigation {
   width: 100%;
   right: 0;
   top: 0;
-  position: fixed !important; }
+  position: absolute; }
   .navbar.affix {
     position: fixed !important; }
   @media (min-width: 768px) {
