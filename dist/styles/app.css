@@ -35,39 +35,38 @@ h3 {
   .collapse-on-mobile-btn:hover, .collapse-on-mobile-btn:focus {
     background-color: #eae7cf; }
 
-.contact-links {
-  list-style: none;
+.contact-links li {
+  display: inline-block;
+  vertical-align: top;
   margin: 0;
-  padding: 0; }
-  .contact-links li {
-    display: inline-block;
-    vertical-align: top;
-    margin: 0;
-    padding: 0;
-    width: 100%; }
-    @media (min-width: 992px) {
-      .contact-links li {
-        width: 49.5%; } }
-  .contact-links a {
-    text-decoration: none;
-    padding: 15px 0px;
-    padding-left: 10px;
-    display: table;
-    width: 100%;
-    transition: color .3s; }
-    .contact-links a:link, .contact-links a:visited {
-      color: inherit; }
-    .contact-links a:hover, .contact-links a:focus {
-      color: white;
-      text-decoration: none; }
-  .contact-links i {
-    display: table-cell;
-    vertical-align: middle;
-    width: 1.5em;
-    text-align: center; }
-  .contact-links .link-text {
-    display: table-cell;
-    vertical-align: middle; }
+  padding: 0;
+  width: 100%; }
+  @media (min-width: 992px) {
+    .contact-links li {
+      width: 49.5%; } }
+
+.contact-links a {
+  text-decoration: none;
+  padding: 15px 0px;
+  padding-left: 10px;
+  display: table;
+  width: 100%;
+  transition: color .3s; }
+  .contact-links a:link, .contact-links a:visited {
+    color: inherit; }
+  .contact-links a:hover, .contact-links a:focus {
+    color: white;
+    text-decoration: none; }
+
+.contact-links i {
+  display: table-cell;
+  vertical-align: middle;
+  width: 1.5em;
+  text-align: center; }
+
+.contact-links .link-text {
+  display: table-cell;
+  vertical-align: middle; }
 
 .jumbotron {
   text-align: center;
@@ -250,22 +249,29 @@ segment h2 {
 segment h3 {
   font-size: 3rem; }
 
+segment ul,
 segment ol {
   list-style: none;
   padding-left: 0; }
-  segment ol > li {
-    padding: 15px 0; }
-  segment ol h3 {
-    margin-top: 0;
-    font-size: 2.2rem; }
-  segment ol h4 {
-    font-weight: bold;
-    margin-top: 0;
-    font-size: 1.5rem; }
-  segment ol ul {
-    padding: 10px 0px 10px 20px; }
-  segment ol .location {
-    font-size: .9em; }
+
+segment ol > li {
+  padding: 15px 0; }
+
+segment ol h3 {
+  margin-top: 0;
+  font-size: 2.2rem; }
+
+segment ol h4 {
+  font-weight: bold;
+  margin-top: 0;
+  font-size: 1.5rem; }
+
+segment ol ul {
+  list-style: circle;
+  padding: 10px 0px 10px 20px; }
+
+segment ol .location {
+  font-size: .9em; }
 
 segment q::before {
   content: '"'; }
