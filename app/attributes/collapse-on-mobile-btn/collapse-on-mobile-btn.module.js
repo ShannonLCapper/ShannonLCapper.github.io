@@ -3,7 +3,7 @@
 (function() {
 	
 	angular.module("collapseOnMobileBtn", [
-
+    "toggleActiveOnClick"
 	]);
 
 })();
