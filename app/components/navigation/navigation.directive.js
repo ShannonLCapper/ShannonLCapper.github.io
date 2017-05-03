@@ -10,6 +10,8 @@
         scope: {},
         templateUrl: "app/components/navigation/navigation.html",
         link: function(scope, element, attrs) {
+          var $affixedEl = element.find("nav");
+
           function calculateOffset() {
             var windowHeight = $window.innerHeight;
             var navTop = parseInt(getCSS("top", ["navbar", "affix"]));
@@ -30,11 +32,8 @@
           }
 
           function onResize() {
-            scope.offset = calculateOffset();
-            var $affixEl = element.find( "[data-spy='affix']" );
-            if (!$affixEl.length) return;
-            $affixEl.data("bs.affix").options.offset.top = scope.offset;
-            $affixEl.affix("checkPosition");
+            $affixedEl.data("bs.affix").options.offset.top = calculateOffset();
+            $affixedEl.affix("checkPosition");
             scope.$digest();
           }
 
@@ -49,7 +48,11 @@
             target: scrollSpySelector,
             offset: 50
           });
-          scope.offset = calculateOffset();
+          $affixedEl.affix({
+            offset: {
+              top: calculateOffset()
+            }
+          })
           angular.element($window).on("resize", onResize);
           scope.$on("$destroy", cleanUp);
         }
