@@ -13,14 +13,7 @@
 	color: $jumbo-color
 	position: relative
 	overflow: hidden
-	background-image: url("/app/images/jumbotron/flowers.jpg")
-	background-repeat: no-repeat
-	background-size: cover
-	background-position: center center
-	background-attachment: fixed
-
-	&.mobile
-		background-attachment: scroll
+	background-color: scale_color($primary, $lightness: -40%)
 
 	&::after //add an overlay on the background image
 		content: ""
@@ -30,9 +23,17 @@
 		left: 0
 		height: $jumbo-height //need this instead of right: 0 to display correctly in IE
 		right: 0
-		background-color: scale_color($primary, $lightness: -40%)
 		z-index: 1
-		opacity: .55
+		opacity: .45
+		background-image: url("/app/images/jumbotron/flowers.jpg")
+		background-repeat: no-repeat
+		background-size: cover
+		background-position: center center
+		background-attachment: fixed
+		
+	&.mobile
+		&::after
+			background-attachment: scroll
 
 	h1, p, .quick-scroll //to position jumbotron elements in front of background image
 		z-index: 2
