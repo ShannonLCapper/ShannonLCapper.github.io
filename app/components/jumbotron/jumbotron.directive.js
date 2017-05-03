@@ -8,6 +8,7 @@
       return {
         restrict: "E",
         scope: {},
+        replace: true,
         templateUrl: "app/components/jumbotron/jumbotron.html",
         link: function(scope, element, attrs) {
           scope.isMobile = detectMobileService.isMobile();

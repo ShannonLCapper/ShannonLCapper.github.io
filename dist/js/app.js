@@ -58,24 +58,6 @@
 
 (function() {
 	
-	angular.module("profile", [
-    "sectionHeader"
-	]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular.module("projects", [
-    "sectionHeader"
-	]);
-
-})();
-"use strict";
-
-(function() {
-	
 	angular.module("sectionHeader", [
 	]);
 
@@ -84,8 +66,8 @@
 
 (function() {
 	
-	angular.module("segment", [
-
+	angular.module("profile", [
+    "sectionHeader"
 	]);
 
 })();
@@ -102,8 +84,26 @@
 
 (function() {
 	
+	angular.module("segment", [
+
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
 	angular.module("workExperience", [
     "collapseOnMobileBtn",
+    "sectionHeader"
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular.module("projects", [
     "sectionHeader"
 	]);
 
@@ -212,6 +212,7 @@
       return {
         restrict: "E",
         scope: {},
+        replace: true,
         templateUrl: "app/components/jumbotron/jumbotron.html",
         link: function(scope, element, attrs) {
           scope.isMobile = detectMobileService.isMobile();
@@ -309,50 +310,6 @@
 (function() {
 	
 	angular
-		.module("profile")
-		.directive("profile", function() {
-      return {
-        restrict: "E",
-        scope: {},
-        templateUrl: "app/components/profile/profile.html",
-        link: function(scope, element, attrs) {
-          scope.calcAge = function calculateAge(birthMonth, birthDay, birthYear) {
-            var todayDate = new Date();
-            var todayYear = todayDate.getFullYear();
-            var todayMonth = todayDate.getMonth();
-            var todayDay = todayDate.getDate();
-            var age = todayYear - birthYear; 
-
-            if (todayMonth < birthMonth - 1) age--;
-            if (birthMonth - 1 == todayMonth && todayDay < birthDay) age--;
-            
-            return age;
-          }
-        }
-      };
-		});
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
-		.module("projects")
-		.directive("projects", function() {
-      return {
-        restrict: "E",
-        scope: {},
-        templateUrl: "app/components/projects/projects.html",
-      };
-		});
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
 		.module("sectionHeader")
 		.directive("sectionHeader", function() {
       return {
@@ -375,14 +332,27 @@
 (function() {
 	
 	angular
-		.module("segment")
-		.directive("segment", function() {
+		.module("profile")
+		.directive("profile", function() {
       return {
         restrict: "E",
-        transclude: true,
         scope: {},
-        template: "<section><div class='wrapper'><ng-transclude></ng-transclude></div></section>"
-      }
+        templateUrl: "app/components/profile/profile.html",
+        link: function(scope, element, attrs) {
+          scope.calcAge = function calculateAge(birthMonth, birthDay, birthYear) {
+            var todayDate = new Date();
+            var todayYear = todayDate.getFullYear();
+            var todayMonth = todayDate.getMonth();
+            var todayDay = todayDate.getDate();
+            var age = todayYear - birthYear; 
+
+            if (todayMonth < birthMonth - 1) age--;
+            if (birthMonth - 1 == todayMonth && todayDay < birthDay) age--;
+            
+            return age;
+          }
+        }
+      };
 		});
 
 })();
@@ -498,6 +468,22 @@
 (function() {
 	
 	angular
+		.module("segment")
+		.directive("segment", function() {
+      return {
+        restrict: "E",
+        transclude: true,
+        scope: {},
+        template: "<section><div class='wrapper'><ng-transclude></ng-transclude></div></section>"
+      }
+		});
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
 		.module("workExperience")
 		.directive("workExperience", [function() {
       var jobs = [
@@ -575,6 +561,21 @@
         }
       }
 		}]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("projects")
+		.directive("projects", function() {
+      return {
+        restrict: "E",
+        scope: {},
+        templateUrl: "app/components/projects/projects.html",
+      };
+		});
 
 })();
 "use strict";
