@@ -74,7 +74,11 @@ h3 {
   width: 100vw;
   display: table-cell;
   vertical-align: middle;
-  background-color: #405824;
+  background-image: url("/app/images/jumbotron/flowers.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
   color: white;
   position: relative;
   overflow: hidden; }
@@ -84,15 +88,11 @@ h3 {
     position: absolute;
     top: 0;
     left: 0;
-    bottom: 0;
+    height: 100vh;
     right: 0;
-    background-image: url("/app/images/jumbotron/flowers.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    background-attachment: fixed;
+    background-color: #405824;
     z-index: 1;
-    opacity: .45; }
+    opacity: .55; }
   .jumbotron h1, .jumbotron p, .jumbotron .quick-scroll {
     z-index: 2;
     position: relative; }

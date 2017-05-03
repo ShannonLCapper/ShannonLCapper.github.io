@@ -3,32 +3,33 @@
 
 .jumbotron
 	$jumbo-color: $white
+	$jumbo-height: 100vh
 
 	text-align: center
-	height: 100vh
+	height: $jumbo-height
 	width: 100vw
 	display: table-cell
 	vertical-align: middle
-	background-color: scale_color($primary, $lightness: -40%)
+	background-image: url("/app/images/jumbotron/flowers.jpg")
+	background-repeat: no-repeat
+	background-size: cover
+	background-position: center center
+	background-attachment: fixed
 	color: $jumbo-color
 	position: relative
 	overflow: hidden
 
-	&::before //add a semi-transparent background image
+	&::before //add an overlay on the background image
 		content: ""
 		display: block
 		position: absolute
 		top: 0
 		left: 0
-		bottom: 0
+		height: $jumbo-height //need this instead of right: 0 to display correctly in IE
 		right: 0
-		background-image: url("/app/images/jumbotron/flowers.jpg")
-		background-repeat: no-repeat
-		background-size: cover
-		background-position: center center
-		background-attachment: fixed
+		background-color: scale_color($primary, $lightness: -40%)
 		z-index: 1
-		opacity: .45
+		opacity: .55
 
 	h1, p, .quick-scroll //to position jumbotron elements in front of background image
 		z-index: 2
