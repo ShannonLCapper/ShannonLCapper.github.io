@@ -56,7 +56,7 @@
 
 (function() {
 	
-	angular.module("contact", [
+	angular.module("education", [
     "sectionHeader"
 	]);
 
@@ -65,7 +65,7 @@
 
 (function() {
 	
-	angular.module("education", [
+	angular.module("contact", [
     "sectionHeader"
 	]);
 
@@ -102,8 +102,7 @@
 
 (function() {
 	
-	angular.module("projects", [
-    "sectionHeader"
+	angular.module("sectionHeader", [
 	]);
 
 })();
@@ -111,7 +110,8 @@
 
 (function() {
 	
-	angular.module("sectionHeader", [
+	angular.module("projects", [
+    "sectionHeader"
 	]);
 
 })();
@@ -226,40 +226,25 @@
 	
 	angular
 		.module("scrollOnClick")
-		.directive("scrollOnClick", [function() {
+		.directive("scrollOnClick", ["$window", "$document", function($window, $document) {
       return {
         restrict: "A",
         link: function(scope, element, attrs) {
           var idToScroll = attrs.href || attrs.ngHref;
           element.on("click", function(e) {
-            // e.preventDefault();
+            e.preventDefault();
             var $target;
             if (idToScroll) {
               $target = $(idToScroll);
             } else {
               $target = element;
             }
-            $("body").animate({scrollTop: $target.offset().top}, "slow");
+            $("html, body").animate({scrollTop: $target.offset().top}, "slow");
+
           })
         }
       }
 		}]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
-		.module("contact")
-		.directive("contact", function(){
-      return {
-        restrict: "E",
-        scope: {},
-        templateUrl: "app/components/contact/contact.html",
-      }
-			
-		});
 
 })();
 "use strict";
@@ -293,6 +278,22 @@
         }
       }
 		}]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("contact")
+		.directive("contact", function(){
+      return {
+        restrict: "E",
+        scope: {},
+        templateUrl: "app/components/contact/contact.html",
+      }
+			
+		});
 
 })();
 "use strict";
@@ -424,21 +425,6 @@
 (function() {
 	
 	angular
-		.module("projects")
-		.directive("projects", function() {
-      return {
-        restrict: "E",
-        scope: {},
-        templateUrl: "app/components/projects/projects.html",
-      };
-		});
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
 		.module("sectionHeader")
 		.directive("sectionHeader", function() {
       return {
@@ -453,6 +439,21 @@
           "<p class='lead with-separator' ng-transclude='subtitle'></p>"
         ].join('')
       }
+		});
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("projects")
+		.directive("projects", function() {
+      return {
+        restrict: "E",
+        scope: {},
+        templateUrl: "app/components/projects/projects.html",
+      };
 		});
 
 })();

@@ -4,20 +4,21 @@
 	
 	angular
 		.module("scrollOnClick")
-		.directive("scrollOnClick", [function() {
+		.directive("scrollOnClick", ["$window", "$document", function($window, $document) {
       return {
         restrict: "A",
         link: function(scope, element, attrs) {
           var idToScroll = attrs.href || attrs.ngHref;
           element.on("click", function(e) {
-            // e.preventDefault();
+            e.preventDefault();
             var $target;
             if (idToScroll) {
               $target = $(idToScroll);
             } else {
               $target = element;
             }
-            $("body").animate({scrollTop: $target.offset().top}, "slow");
+            $("html, body").animate({scrollTop: $target.offset().top}, "slow");
+
           })
         }
       }
