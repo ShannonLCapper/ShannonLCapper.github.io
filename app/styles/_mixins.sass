@@ -1,4 +1,11 @@
 @mixin respond-to($query, $type: min-width)
 	@media ($type: $query)
 		@content
+
+@mixin rotate-caret-on-active
+	.caret
+		transition: transform .3s
+	&.active
+		.caret
+			transform: rotate(-180deg)
 		
