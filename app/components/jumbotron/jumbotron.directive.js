@@ -11,7 +11,7 @@
         scope: {},
         templateUrl: "app/components/jumbotron/jumbotron.html",
         link: function(scope, element, attrs) {
-          element.backstretch();
+          // element.backstretch();
         }
       };
 		});
