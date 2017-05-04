@@ -3,6 +3,7 @@
 
 profile
 	.profile-pic
+		margin-top: 10px
 		border: 15px solid $light
 		max-width: 300px
 		width: 100%
@@ -10,3 +11,27 @@ profile
 		text-align: center
 		@include respond-to($sm-bp)
 			text-align: left
+	.details-list
+		a:link,
+		a:visited
+		a:hover,
+		a:focus
+			color: inherit
+		a:active
+			color: $primary
+	.download-resume
+		display: inline-block
+		text-align: center
+		$download-color: $primary
+		background-color: $download-color
+		color: $white
+		padding: 1rem
+		border-radius: $border-radius
+		&:hover,
+		&:focus
+			text-decoration: none
+			background-color: scale_color($download-color, $lightness: -15%)
+		&:active
+			background-color: $secondary
+
+

@@ -9,6 +9,9 @@ h2,
 h3 {
   font-family: 'Kaushan Script', cursive; }
 
+a {
+  color: inherit; }
+
 .collapse-on-mobile {
   display: none; }
   @media (min-width: 768px) {
@@ -193,6 +196,7 @@ navigation {
       overflow-y: auto; } }
 
 profile .profile-pic {
+  margin-top: 10px;
   border: 15px solid #eae7cf;
   max-width: 300px;
   width: 100%; }
@@ -202,6 +206,26 @@ profile .row {
   @media (min-width: 768px) {
     profile .row {
       text-align: left; } }
+
+profile .details-list a:hover,
+profile .details-list a:focus {
+  color: inherit; }
+
+profile .details-list a:active {
+  color: #6b933c; }
+
+profile .download-resume {
+  display: inline-block;
+  text-align: center;
+  background-color: #6b933c;
+  color: white;
+  padding: 1rem;
+  border-radius: 5px; }
+  profile .download-resume:hover, profile .download-resume:focus {
+    text-decoration: none;
+    background-color: #5b7d33; }
+  profile .download-resume:active {
+    background-color: #320f1e; }
 
 .projects-list-item {
   margin-top: 20px;

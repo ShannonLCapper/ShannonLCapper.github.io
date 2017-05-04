@@ -29,15 +29,6 @@
 
 (function() {
 	
-	angular.module("preventBsStickyClicks", [
-
-	]);
-
-})();
-"use strict";
-
-(function() {
-	
 	angular.module("collapseOnMobileBtn", [
     "toggleActiveOnClick"
 	]);
@@ -47,8 +38,8 @@
 
 (function() {
 	
-	angular.module("scrollOnClick", [
-        
+	angular.module("preventBsStickyClicks", [
+
 	]);
 
 })();
@@ -67,6 +58,15 @@
 	
 	angular.module("contact", [
     "sectionHeader"
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular.module("scrollOnClick", [
+        
 	]);
 
 })();
@@ -93,9 +93,8 @@
 
 (function() {
 	
-	angular.module("navigation", [
-    "scrollOnClick",
-    "collapseOnClick" 
+	angular.module("profile", [
+    "sectionHeader"
 	]);
 
 })();
@@ -103,8 +102,9 @@
 
 (function() {
 	
-	angular.module("profile", [
-    "sectionHeader"
+	angular.module("navigation", [
+    "scrollOnClick",
+    "collapseOnClick" 
 	]);
 
 })();
@@ -196,31 +196,6 @@
 (function() {
 	
 	angular
-		.module("preventBsStickyClicks")
-		.directive("preventBsStickyClicks", [function() {
-      return {
-        restrict: "A",
-        link: function(scope, element, attrs) {
-          var elIsBody = (element[0] === $("body")[0]);
-          if (elIsBody) {
-            element.on("mouseup", "button, a[data-trigger!='focus'], input[type='submit'], input[type='reset']", function() {
-              $(this).blur();
-            });
-          } else {
-            element.on("mouseup", function() {
-              element.blur();
-            })
-          }
-        }
-      }
-		}]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
 		.module("collapseOnMobileBtn")
 		.directive("collapseOnMobileBtn", ["$compile", function($compile) {
       return {
@@ -249,23 +224,21 @@
 (function() {
 	
 	angular
-		.module("scrollOnClick")
-		.directive("scrollOnClick", ["$window", "$document", function($window, $document) {
+		.module("preventBsStickyClicks")
+		.directive("preventBsStickyClicks", [function() {
       return {
         restrict: "A",
         link: function(scope, element, attrs) {
-          var idToScroll = attrs.href || attrs.ngHref;
-          element.on("click", function(e) {
-            e.preventDefault();
-            var $target;
-            if (idToScroll) {
-              $target = $(idToScroll);
-            } else {
-              $target = element;
-            }
-            $("html, body").animate({scrollTop: $target.offset().top}, "slow");
-
-          })
+          var elIsBody = (element[0] === $("body")[0]);
+          if (elIsBody) {
+            element.on("mouseup", "button, a[data-trigger!='focus'], input[type='submit'], input[type='reset']", function() {
+              $(this).blur();
+            });
+          } else {
+            element.on("mouseup", function() {
+              element.blur();
+            })
+          }
         }
       }
 		}]);
@@ -303,6 +276,33 @@
       }
 			
 		});
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("scrollOnClick")
+		.directive("scrollOnClick", ["$window", "$document", function($window, $document) {
+      return {
+        restrict: "A",
+        link: function(scope, element, attrs) {
+          var idToScroll = attrs.href || attrs.ngHref;
+          element.on("click", function(e) {
+            e.preventDefault();
+            var $target;
+            if (idToScroll) {
+              $target = $(idToScroll);
+            } else {
+              $target = element;
+            }
+            $("html, body").animate({scrollTop: $target.offset().top}, "slow");
+
+          })
+        }
+      }
+		}]);
 
 })();
 "use strict";
@@ -355,6 +355,35 @@
         }
       };
 		}]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("profile")
+		.directive("profile", function() {
+      return {
+        restrict: "E",
+        scope: {},
+        templateUrl: "app/components/profile/profile.html",
+        link: function(scope, element, attrs) {
+          scope.calcAge = function calculateAge(birthMonth, birthDay, birthYear) {
+            var todayDate = new Date();
+            var todayYear = todayDate.getFullYear();
+            var todayMonth = todayDate.getMonth();
+            var todayDay = todayDate.getDate();
+            var age = todayYear - birthYear; 
+
+            if (todayMonth < birthMonth - 1) age--;
+            if (birthMonth - 1 == todayMonth && todayDay < birthDay) age--;
+            
+            return age;
+          }
+        }
+      };
+		});
 
 })();
 "use strict";
@@ -439,35 +468,6 @@
         }
       }
 		}]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
-		.module("profile")
-		.directive("profile", function() {
-      return {
-        restrict: "E",
-        scope: {},
-        templateUrl: "app/components/profile/profile.html",
-        link: function(scope, element, attrs) {
-          scope.calcAge = function calculateAge(birthMonth, birthDay, birthYear) {
-            var todayDate = new Date();
-            var todayYear = todayDate.getFullYear();
-            var todayMonth = todayDate.getMonth();
-            var todayDay = todayDate.getDate();
-            var age = todayYear - birthYear; 
-
-            if (todayMonth < birthMonth - 1) age--;
-            if (birthMonth - 1 == todayMonth && todayDay < birthDay) age--;
-            
-            return age;
-          }
-        }
-      };
-		});
 
 })();
 "use strict";
