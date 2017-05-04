@@ -11,7 +11,7 @@
         replace: true,
         templateUrl: "app/components/jumbotron/jumbotron.html",
         link: function(scope, element, attrs) {
-          scope.isMobile = detectMobileService.isMobile();
+          scope.isMobile = detectMobileService.isMobileTablet();
         }
       };
 		}]);
