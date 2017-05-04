@@ -2,6 +2,7 @@
 @import "mixins"
 
 navigation
+	$nav-radius: $border-radius
 	position: absolute
 	overflow: visible
 	z-index: 100
@@ -60,7 +61,7 @@ navigation
 		width: 100%
 		color: $white !important
 		text-decoration: none
-		transition: color .3s
+		transition: color $transition-duration
 
 		&:hover,
 		&:focus
