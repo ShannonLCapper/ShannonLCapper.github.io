@@ -18,22 +18,15 @@ h3 {
   .collapse-on-mobile.in, .collapse-on-mobile.collapsing {
     display: block; }
 
-.collapse-on-mobile-btn {
-  border: none;
-  border-radius: 5px;
-  padding: 0px 6px 0px 5px;
-  background: transparent;
-  color: inherit;
-  transition: background-color .3s; }
-  @media (min-width: 768px) {
-    .collapse-on-mobile-btn {
-      display: none; } }
-  .collapse-on-mobile-btn .caret {
-    transition: transform .3s; }
-  .collapse-on-mobile-btn.active .caret {
-    transform: rotate(-180deg); }
-  .collapse-on-mobile-btn:hover, .collapse-on-mobile-btn:focus {
-    background-color: #eae7cf; }
+@media (min-width: 768px) {
+  .collapse-on-mobile-btn {
+    display: none; } }
+
+.collapse-on-mobile-btn .caret {
+  transition: transform .3s; }
+
+.collapse-on-mobile-btn.active .caret {
+  transform: rotate(-180deg); }
 
 .contact-links li {
   display: inline-block;
@@ -51,7 +44,7 @@ h3 {
   padding-left: 10px;
   display: table;
   width: 100%;
-  transition: color .3s; }
+  transition: color 0.3s; }
   .contact-links a:link, .contact-links a:visited {
     color: inherit; }
   .contact-links a:hover, .contact-links a:focus {
@@ -181,7 +174,7 @@ navigation {
     width: 100%;
     color: white !important;
     text-decoration: none;
-    transition: color .3s; }
+    transition: color 0.3s; }
     .navbar a:hover, .navbar a:focus {
       color: #ddd8b0 !important; }
 
@@ -209,6 +202,141 @@ profile .row {
   @media (min-width: 768px) {
     profile .row {
       text-align: left; } }
+
+.projects-list-item {
+  margin-top: 20px;
+  margin-bottom: 40px; }
+  .projects-list-item .header {
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-bottom: 10px; }
+  .projects-list-item a {
+    display: block; }
+  .projects-list-item img {
+    display: block;
+    width: 100%;
+    transition: all 0.5s; }
+  .projects-list-item .header-text {
+    text-align: center; }
+    .projects-list-item .header-text p {
+      margin-bottom: 0; }
+    .projects-list-item .header-text.overlay {
+      text-align: left;
+      display: block;
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: 0;
+      padding: 8%;
+      color: white;
+      opacity: 0;
+      background-color: rgba(107, 147, 60, 0.7);
+      transition: all 0.5s; }
+      .projects-list-item .header-text.overlay h3 {
+        color: white;
+        font-size: 30px;
+        margin-top: 0; }
+        .projects-list-item .header-text.overlay h3::after {
+          content: "";
+          display: block;
+          margin-top: 5%;
+          margin-bottom: 5%;
+          height: 2px;
+          background-color: white;
+          width: 0%;
+          transition: width 0.5s; }
+      .projects-list-item .header-text.overlay p {
+        transform: translateX(100%);
+        transition: all 0.5s;
+        font-size: 12px; }
+      @media (min-width: 400px) {
+        .projects-list-item .header-text.overlay h3 {
+          font-size: 35px; }
+        .projects-list-item .header-text.overlay p {
+          font-size: 15px; } }
+      @media (min-width: 500px) {
+        .projects-list-item .header-text.overlay h3 {
+          font-size: 50px; }
+        .projects-list-item .header-text.overlay p {
+          font-size: 18px; } }
+      @media (min-width: 768px) {
+        .projects-list-item .header-text.overlay h3 {
+          font-size: 35px; } }
+      @media (min-width: 992px) {
+        .projects-list-item .header-text.overlay h3 {
+          font-size: 35px; }
+        .projects-list-item .header-text.overlay p {
+          font-size: 12px; } }
+      @media (min-width: 1200px) {
+        .projects-list-item .header-text.overlay h3 {
+          font-size: 50px; }
+        .projects-list-item .header-text.overlay p {
+          font-size: 15px; } }
+  .projects-list-item:focus img.animate, .projects-list-item:hover img.animate {
+    transform: scale(1.1); }
+  .projects-list-item:focus .overlay, .projects-list-item:hover .overlay {
+    opacity: 1; }
+    .projects-list-item:focus .overlay h3::after, .projects-list-item:hover .overlay h3::after {
+      width: 100%; }
+    .projects-list-item:focus .overlay p, .projects-list-item:hover .overlay p {
+      transform: translateX(0%); }
+  .projects-list-item .collapse-btn {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    padding: 10px;
+    transition: background-color 0.3s;
+    border-radius: 10px;
+    margin-top: 5px; }
+    .projects-list-item .collapse-btn:hover {
+      background-color: #ddd8b0; }
+    .projects-list-item .collapse-btn .caret {
+      border-width: 15px; }
+    .projects-list-item .collapse-btn .caret {
+      transition: transform .3s; }
+    .projects-list-item .collapse-btn.active .caret {
+      transform: rotate(-180deg); }
+  .projects-list-item .project-description {
+    list-style: circle;
+    padding: 10px 20px 20px 20px; }
+  .projects-list-item .project-links a {
+    color: #6b933c;
+    display: inline-block; }
+    .projects-list-item .project-links a::after {
+      content: "|";
+      color: #b6d393;
+      padding: 0 5px; }
+    .projects-list-item .project-links a:last-of-type::after {
+      content: ""; }
+    .projects-list-item .project-links a:active {
+      color: #506e2d; }
+  .projects-list-item .project-links i {
+    font-size: 2rem;
+    display: inline-block;
+    vertical-align: middle; }
+
+.interactive-resume-description {
+  text-align: center;
+  margin-top: 30px; }
+  .interactive-resume-description a {
+    display: block;
+    background-color: #6b933c;
+    color: white;
+    max-width: 25rem;
+    padding: 10px;
+    margin: 10px auto;
+    border-radius: 5px;
+    transition: font-size 0.3s; }
+    .interactive-resume-description a:hover, .interactive-resume-description a:focus {
+      text-decoration: none;
+      font-size: 1.2em; }
+    .interactive-resume-description a:active {
+      background-color: #5b7d33; }
 
 segment section {
   padding: 60px 20px; }
@@ -299,3 +427,13 @@ skills {
   text-align: center; }
   skills li {
     font-size: 1.8rem; }
+
+work-experience .collapse-on-mobile-btn {
+  border: none;
+  border-radius: 5px;
+  padding: 0px 6px 0px 5px;
+  background: transparent;
+  color: inherit;
+  transition: background-color 0.3s; }
+  work-experience .collapse-on-mobile-btn:hover, work-experience .collapse-on-mobile-btn:focus {
+    background-color: #eae7cf; }

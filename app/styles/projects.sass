@@ -1,0 +1,175 @@
+@import "variables"
+@import "mixins"
+
+.projects-list-item
+	$animation-time: .5s
+	$li-padding: 20px
+
+	margin-top: $li-padding
+	margin-bottom: $li-padding * 2
+
+	.header
+		position: relative
+		overflow: hidden
+		margin-top: 10px
+		margin-bottom: 10px
+
+	a
+		display: block
+
+		// &:hover,
+		// &:focus
+		// 	img
+		// 		transform: scale(1.2)
+
+	img
+		display: block
+		width: 100%
+		transition: all $animation-time
+
+	.header-text
+		text-align: center
+
+		p
+			margin-bottom: 0
+
+		&.overlay
+			$overlay-color: $white
+			
+			text-align: left
+			display: block
+			pointer-events: none
+			position: absolute
+			top: 0
+			left: 0
+			bottom: 0
+			right: 0
+			margin: 0
+			padding: 8%
+			color: $overlay-color
+			opacity: 0
+			background-color: rgba($primary, .7)
+			transition: all $animation-time
+
+			h3
+				color: $overlay-color
+				font-size: 30px
+				margin-top: 0
+				&::after
+					$margin: 5%
+					content: ""
+					display: block
+					margin-top: $margin
+					margin-bottom: $margin
+					height: 2px
+					background-color: $overlay-color
+					width: 0%
+					transition: width $animation-time
+
+			p
+				transform: translateX(100%)
+				transition: all $animation-time
+				font-size: 12px
+
+			// &:hover,
+			// &:focus
+			// 	opacity: 1
+			// 	h3::after
+			// 		width: 100%
+			// 	p
+			// 		transform: translateX(0%)
+
+			@include respond-to($xxs-bp)
+				h3
+					font-size: 35px
+				p
+					font-size: 15px
+			@include respond-to($xs-bp)
+				h3
+					font-size: 50px
+				p
+					font-size: 18px
+			@include respond-to($sm-bp)
+				h3
+					font-size: 35px
+			@include respond-to($md-bp)
+				h3
+					font-size: 35px
+				p
+					font-size: 12px
+			@include respond-to($lg-bp)
+				h3
+					font-size: 50px
+				p
+					font-size: 15px
+
+	&:focus,
+	&:hover
+		img.animate
+			transform: scale(1.1)
+		.overlay
+			opacity: 1
+			h3::after
+				width: 100%
+			p
+				transform: translateX(0%)
+
+	.collapse-btn
+		display: block
+		width: 100%
+		border: none
+		background-color: transparent
+		padding: 10px
+		transition: background-color $transition-duration
+		border-radius: 10px
+		margin-top: 5px
+
+		&:hover
+			background-color: scale_color($light, $lightness:-10%)
+		.caret
+			border-width: 15px
+		@include rotate-caret-on-active
+
+	.project-description
+		list-style: circle
+		padding: 10px 20px 20px 20px
+
+	.project-links
+		$link-color: $primary
+		a
+			// white-space: nowrap
+			color: $link-color
+			display: inline-block
+			&::after
+				content: "|"
+				color: scale_color($link-color, $lightness: 50%)
+				padding: 0 5px
+			&:last-of-type::after
+				content: ""
+			&:active
+				color: scale_color($link-color, $lightness: -25%)
+
+		i
+			font-size: 2rem
+			display: inline-block
+			vertical-align: middle
+
+
+.interactive-resume-description
+	text-align: center
+	margin-top: 30px
+	a
+		display: block
+		background-color: $primary
+		color: $white
+		max-width: 25rem
+		padding: 10px
+		margin: 10px auto
+		border-radius: $border-radius
+		transition: font-size $transition-duration
+		&:hover,
+		&:focus
+			text-decoration: none
+			font-size: 1.2em
+		&:active
+			background-color: scale_color($primary, $lightness: -15%)

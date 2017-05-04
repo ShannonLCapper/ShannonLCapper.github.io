@@ -3,7 +3,9 @@
 (function() {
 	
 	angular.module("projects", [
-    "sectionHeader"
+    "sectionHeader",
+    "toggleActiveOnClick",
+    "detectMobileService"
 	]);
 
 })();
