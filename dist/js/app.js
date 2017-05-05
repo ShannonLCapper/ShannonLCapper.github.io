@@ -47,6 +47,15 @@
 
 (function() {
 	
+	angular.module("scrollOnClick", [
+        
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
 	angular.module("toggleActiveOnClick", [
 
 	]);
@@ -58,15 +67,6 @@
 	
 	angular.module("contact", [
     "sectionHeader"
-	]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular.module("scrollOnClick", [
-        
 	]);
 
 })();
@@ -93,8 +93,9 @@
 
 (function() {
 	
-	angular.module("profile", [
-    "sectionHeader"
+	angular.module("navigation", [
+    "scrollOnClick",
+    "collapseOnClick" 
 	]);
 
 })();
@@ -102,9 +103,8 @@
 
 (function() {
 	
-	angular.module("navigation", [
-    "scrollOnClick",
-    "collapseOnClick" 
+	angular.module("profile", [
+    "sectionHeader"
 	]);
 
 })();
@@ -249,6 +249,33 @@
 (function() {
 	
 	angular
+		.module("scrollOnClick")
+		.directive("scrollOnClick", ["$window", "$document", function($window, $document) {
+      return {
+        restrict: "A",
+        link: function(scope, element, attrs) {
+          var idToScroll = attrs.href || attrs.ngHref;
+          element.on("click", function(e) {
+            e.preventDefault();
+            var $target;
+            if (idToScroll) {
+              $target = $(idToScroll);
+            } else {
+              $target = element;
+            }
+            $("html, body").animate({scrollTop: $target.offset().top}, "slow");
+
+          })
+        }
+      }
+		}]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
 		.module("toggleActiveOnClick")
 		.directive("toggleActiveOnClick", [function($compile) {
       return {
@@ -276,33 +303,6 @@
       }
 			
 		});
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
-		.module("scrollOnClick")
-		.directive("scrollOnClick", ["$window", "$document", function($window, $document) {
-      return {
-        restrict: "A",
-        link: function(scope, element, attrs) {
-          var idToScroll = attrs.href || attrs.ngHref;
-          element.on("click", function(e) {
-            e.preventDefault();
-            var $target;
-            if (idToScroll) {
-              $target = $(idToScroll);
-            } else {
-              $target = element;
-            }
-            $("html, body").animate({scrollTop: $target.offset().top}, "slow");
-
-          })
-        }
-      }
-		}]);
 
 })();
 "use strict";
@@ -355,35 +355,6 @@
         }
       };
 		}]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
-		.module("profile")
-		.directive("profile", function() {
-      return {
-        restrict: "E",
-        scope: {},
-        templateUrl: "app/components/profile/profile.html",
-        link: function(scope, element, attrs) {
-          scope.calcAge = function calculateAge(birthMonth, birthDay, birthYear) {
-            var todayDate = new Date();
-            var todayYear = todayDate.getFullYear();
-            var todayMonth = todayDate.getMonth();
-            var todayDay = todayDate.getDate();
-            var age = todayYear - birthYear; 
-
-            if (todayMonth < birthMonth - 1) age--;
-            if (birthMonth - 1 == todayMonth && todayDay < birthDay) age--;
-            
-            return age;
-          }
-        }
-      };
-		});
 
 })();
 "use strict";
@@ -468,6 +439,35 @@
         }
       }
 		}]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("profile")
+		.directive("profile", function() {
+      return {
+        restrict: "E",
+        scope: {},
+        templateUrl: "app/components/profile/profile.html",
+        link: function(scope, element, attrs) {
+          scope.calcAge = function calculateAge(birthMonth, birthDay, birthYear) {
+            var todayDate = new Date();
+            var todayYear = todayDate.getFullYear();
+            var todayMonth = todayDate.getMonth();
+            var todayDay = todayDate.getDate();
+            var age = todayYear - birthYear; 
+
+            if (todayMonth < birthMonth - 1) age--;
+            if (birthMonth - 1 == todayMonth && todayDay < birthDay) age--;
+            
+            return age;
+          }
+        }
+      };
+		});
 
 })();
 "use strict";

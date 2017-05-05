@@ -10,7 +10,7 @@
   <li ng-repeat="project in projects" class="col-md-6 projects-list-item">
     <div class="header">
       <a ng-href="https://{{project.url}}" target="_blank">
-        <img ng-src="{{project.image.src}}" alt="{{project.image.alt}}" width="400" ng-class="{'animate': !isMobile}">
+        <img ng-src="{{project.image.src}}" alt="{{project.image.alt}}" width="900" height="600" ng-class="{'animate': !isMobile}">
       </a>
       <div class="header-text" ng-class="{'overlay': !isMobile}">
         <h3>{{project.name}}</h3>

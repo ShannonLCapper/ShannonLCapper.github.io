@@ -240,6 +240,7 @@ profile .download-resume {
   .projects-list-item img {
     display: block;
     width: 100%;
+    height: auto;
     transition: all 0.5s; }
   .projects-list-item .header-text {
     text-align: center; }
