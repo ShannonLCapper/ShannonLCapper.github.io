@@ -20,6 +20,15 @@
 
 (function() {
 	
+	angular.module("collapseOnClick", [
+
+	]);
+
+})();
+"use strict";
+
+(function() {
+	
 	angular.module("collapseOnMobileBtn", [
     "toggleActiveOnClick"
 	]);
@@ -30,15 +39,6 @@
 (function() {
 	
 	angular.module("preventBsStickyClicks", [
-
-	]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular.module("collapseOnClick", [
 
 	]);
 
@@ -123,7 +123,8 @@
 
 (function() {
 	
-	angular.module("sectionHeader", [
+	angular.module("segment", [
+
 	]);
 
 })();
@@ -131,8 +132,7 @@
 
 (function() {
 	
-	angular.module("segment", [
-
+	angular.module("sectionHeader", [
 	]);
 
 })();
@@ -162,6 +162,33 @@
     "collapseOnMobileBtn",
     "sectionHeader"
 	]);
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
+		.module("collapseOnClick")
+		.directive("collapseOnClick", [function() {
+      return {
+        restrict: "A",
+        link: function(scope, element, attrs) {
+          var selectorToCollapse = attrs.collapseThis;
+          element.on("click", function() {
+            var $target;
+            if (selectorToCollapse) {
+              $target = $(selectorToCollapse);
+            } else {
+              $target = element;
+            }
+            if ($target.data("bs.collapse")) {
+              $target.collapse("hide");
+            }
+          })
+        }
+      }
+		}]);
 
 })();
 "use strict";
@@ -212,33 +239,6 @@
               element.blur();
             })
           }
-        }
-      }
-		}]);
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
-		.module("collapseOnClick")
-		.directive("collapseOnClick", [function() {
-      return {
-        restrict: "A",
-        link: function(scope, element, attrs) {
-          var selectorToCollapse = attrs.collapseThis;
-          element.on("click", function() {
-            var $target;
-            if (selectorToCollapse) {
-              $target = $(selectorToCollapse);
-            } else {
-              $target = element;
-            }
-            if ($target.data("bs.collapse")) {
-              $target.collapse("hide");
-            }
-          })
         }
       }
 		}]);
@@ -529,6 +529,22 @@
 (function() {
 	
 	angular
+		.module("segment")
+		.directive("segment", function() {
+      return {
+        restrict: "E",
+        transclude: true,
+        scope: {},
+        template: "<section><div class='wrapper'><ng-transclude></ng-transclude></div></section>"
+      }
+		});
+
+})();
+"use strict";
+
+(function() {
+	
+	angular
 		.module("sectionHeader")
 		.directive("sectionHeader", function() {
       return {
@@ -542,22 +558,6 @@
           "<h2 ng-transclude='title'></h2>",
           "<p class='lead with-separator' ng-transclude='subtitle'></p>"
         ].join('')
-      }
-		});
-
-})();
-"use strict";
-
-(function() {
-	
-	angular
-		.module("segment")
-		.directive("segment", function() {
-      return {
-        restrict: "E",
-        transclude: true,
-        scope: {},
-        template: "<section><div class='wrapper'><ng-transclude></ng-transclude></div></section>"
       }
 		});
 
