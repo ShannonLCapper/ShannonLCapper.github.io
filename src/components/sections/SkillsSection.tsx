@@ -1,9 +1,69 @@
+import styled from '@emotion/styled';
+import React from 'react';
+
 import { SECTION_ID } from 'src/components/navigation/Navigation';
 import {
     Section,
     SectionCite,
+    SectionH3,
     SectionQuote,
+    Separator,
 } from 'src/components/sections/styleComponents';
+import { mediaQueryTarget } from 'src/styles/scalepoint';
+
+const lists = [
+    {
+        title: 'Web Technologies',
+        items: [
+            'React',
+            'HTML/CSS',
+            'CSS-in-JS',
+            'GraphQL/Apollo',
+            'Redux',
+            'Redux Saga',
+            'Prosemirror',
+            'AWS Lambda',
+            'DynamoDB',
+            'AWS AppSync',
+        ],
+    },
+    {
+        title: 'Programming Languages',
+        items: ['TypeScript', 'JavaScript', 'Python', 'Ruby'],
+    },
+    {
+        title: 'Tools',
+        items: [
+            'Git',
+            'Webpack/Rollup',
+            'Eslint/Prettier',
+            'Jest',
+            'CircleCI',
+            'Sentry',
+            'Adobe Photoshop',
+            'Adobe Illustrator',
+            'Figma',
+        ],
+    },
+];
+
+const ListHeading = styled(SectionH3)({
+    textAlign: 'center',
+    marginBottom: 10,
+});
+
+const List = styled.ul({
+    margin: 0,
+    padding: 0,
+    listStyle: 'none',
+    textAlign: 'center',
+    fontSize: '1.8rem',
+    display: 'grid',
+    gridTemplateColumns: '1fr',
+    [mediaQueryTarget.medium]: {
+        gridTemplateColumns: '1fr 1fr',
+    },
+});
 
 export const SkillsSection = () => {
     return (
@@ -19,6 +79,20 @@ export const SkillsSection = () => {
                     <SectionCite>Wilbur Wright</SectionCite>
                 </>
             }
-        ></Section>
+        >
+            {lists.map(({ title, items }, i) => (
+                <React.Fragment key={title}>
+                    <ListHeading>{title}</ListHeading>
+                    <List>
+                        {items.map((item) => (
+                            <li key={item}>{item}</li>
+                        ))}
+                    </List>
+                    {i < lists.length - 1 && (
+                        <Separator isLastSection={false} />
+                    )}
+                </React.Fragment>
+            ))}
+        </Section>
     );
 };
