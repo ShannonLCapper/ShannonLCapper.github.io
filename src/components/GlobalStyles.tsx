@@ -13,6 +13,7 @@ const globalStyles = (): CSSObject => ({
         color: colors.secondary,
         fontFamily: font.family.sansSerif,
         lineHeight: font.lineHeight.default,
+        fontSize: 14,
     },
     html: {
         fontSize: 10,
