@@ -67,7 +67,12 @@
     },
     "importSort": {
         ".js,.jsx,.ts,.tsx": {
-            "style": "module-alias"
+            "style": "module-alias",
+            "options": {
+                "alias": [
+                    "src"
+                ]
+            }
         }
     }
 }
