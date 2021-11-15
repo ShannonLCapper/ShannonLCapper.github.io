@@ -1,6 +1,24 @@
 import { SECTION_ID } from 'src/components/navigation/Navigation';
-import { SectionRoot } from 'src/components/sections/styleComponents';
+import {
+    Section,
+    SectionCite,
+    SectionQuote,
+} from 'src/components/sections/styleComponents';
 
 export const ProjectsSection = () => {
-    return <SectionRoot id={SECTION_ID.PROJECTS}>Projects Section</SectionRoot>;
+    return (
+        <Section
+            id={SECTION_ID.PROJECTS}
+            title='Projects'
+            subtitle={
+                <>
+                    <SectionQuote>
+                        Every project is an opportunity to learn, to figure out
+                        problems and challenges, to invent and reinvent.
+                    </SectionQuote>
+                    <SectionCite>David Rockwell</SectionCite>
+                </>
+            }
+        ></Section>
+    );
 };

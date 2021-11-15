@@ -137,7 +137,7 @@ const NavLink = styled(Link)({
     color: colors.white,
     textDecoration: 'none',
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: '1.8rem',
     transition: `background-color ${transition.duration}, color ${transition.duration}`,
     lineHeight: 1,
     ':hover, :focus': {

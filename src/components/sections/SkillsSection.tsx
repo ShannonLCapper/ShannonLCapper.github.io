@@ -1,6 +1,24 @@
 import { SECTION_ID } from 'src/components/navigation/Navigation';
-import { SectionRoot } from 'src/components/sections/styleComponents';
+import {
+    Section,
+    SectionCite,
+    SectionQuote,
+} from 'src/components/sections/styleComponents';
 
 export const SkillsSection = () => {
-    return <SectionRoot id={SECTION_ID.SKILLS}>Skills Section</SectionRoot>;
+    return (
+        <Section
+            id={SECTION_ID.SKILLS}
+            title='Technical Skills'
+            subtitle={
+                <>
+                    <SectionQuote>
+                        It is possible to fly without motors, but not without
+                        knowledge and skill.
+                    </SectionQuote>
+                    <SectionCite>Wilbur Wright</SectionCite>
+                </>
+            }
+        ></Section>
+    );
 };

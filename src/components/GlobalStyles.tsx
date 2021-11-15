@@ -14,6 +14,9 @@ const globalStyles = (): CSSObject => ({
         fontFamily: font.family.sansSerif,
         lineHeight: font.lineHeight.default,
     },
+    html: {
+        fontSize: 10,
+    },
 });
 
 export const GlobalStyles = () => <Global styles={globalStyles} />;
