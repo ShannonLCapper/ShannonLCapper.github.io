@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { darken } from 'polished';
-import { useMemo, useState } from 'react';
+import { MutableRefObject, useEffect, useMemo, useRef, useState } from 'react';
 import AnimateHeight from 'react-animate-height';
 import { FiMenu } from 'react-icons/fi';
 import { Link } from 'react-scroll';
@@ -46,13 +46,24 @@ const navItems = [
     },
 ];
 
+const NAV_Z_INDEX = 100;
+export const NAV_RIGHT = 40;
+export const NAV_WIDTH = 110;
+const NAV_TOP = 60;
+
 const MobileNavRoot = styled.nav({
     position: 'sticky',
     top: 0,
     width: '100%',
-    zIndex: 100,
-    textAlign: 'center',
-    fontSize: 18,
+    zIndex: NAV_Z_INDEX,
+});
+
+const DesktopNavRoot = styled.nav({
+    position: 'sticky',
+    top: NAV_TOP,
+    left: 0,
+    right: 0,
+    zIndex: NAV_Z_INDEX,
 });
 
 const MobileNavHeader = styled.div({
@@ -98,6 +109,22 @@ const MobileNavList = styled.ul({
     backgroundColor: colors.secondary,
 });
 
+const DesktopNavList = styled.ul(({ isStuck }: { isStuck: boolean }) => ({
+    position: 'absolute',
+    right: NAV_RIGHT,
+    width: NAV_WIDTH,
+    maxHeight: `calc(100vh - ${NAV_TOP * 2}px)`,
+    overflowY: 'auto',
+    margin: 0,
+    padding: 0,
+    listStyle: 'none',
+    backgroundColor: colors.secondary,
+    borderBottomLeftRadius: border.radius,
+    borderBottomRightRadius: border.radius,
+    borderTopLeftRadius: isStuck ? border.radius : 0,
+    borderTopRightRadius: isStuck ? border.radius : 0,
+}));
+
 const NAV_LINK_ACTIVE_CLASS = 'active';
 const NavLink = styled(Link)({
     cursor: 'pointer',
@@ -109,6 +136,8 @@ const NavLink = styled(Link)({
     paddingBottom: 30,
     color: colors.white,
     textDecoration: 'none',
+    textAlign: 'center',
+    fontSize: 18,
     transition: `background-color ${transition.duration}, color ${transition.duration}`,
     lineHeight: 1,
     ':hover, :focus': {
@@ -172,8 +201,57 @@ const MobileNavigation = () => {
     );
 };
 
+/**
+ * Returns whether the given sticky element is "stuck" or not
+ * Inspired by https://css-tricks.com/how-to-detect-when-a-sticky-element-gets-pinned/
+ */
+const useIsStuck = (
+    stickyElementRef: MutableRefObject<HTMLElement | null>,
+    stickyElementTop: number,
+): boolean => {
+    const [isStuck, setIsStuck] = useState(false);
+    useEffect(() => {
+        const stickyElement = stickyElementRef.current;
+        if (!stickyElement) {
+            return;
+        }
+        const observer = new IntersectionObserver(
+            ([entry]) => setIsStuck(entry.intersectionRatio < 1),
+            {
+                threshold: [1],
+                rootMargin: `-${stickyElementTop + 1}px 0px 0px 0px`,
+            },
+        );
+        observer.observe(stickyElement);
+
+        return () => observer.disconnect();
+    }, [stickyElementRef, stickyElementTop]);
+
+    return isStuck;
+};
+
 const DesktopNavigation = () => {
-    return <nav>Desktop nav</nav>;
+    const stickyElementRef = useRef<HTMLElement | null>(null);
+    const isStuck = useIsStuck(stickyElementRef, NAV_TOP);
+
+    return (
+        <DesktopNavRoot ref={stickyElementRef}>
+            <DesktopNavList isStuck={isStuck}>
+                {navItems.map(({ label, id }) => (
+                    <li key={id}>
+                        <NavLink
+                            activeClass={NAV_LINK_ACTIVE_CLASS}
+                            to={id}
+                            spy={true}
+                            smooth={true}
+                        >
+                            {label}
+                        </NavLink>
+                    </li>
+                ))}
+            </DesktopNavList>
+        </DesktopNavRoot>
+    );
 };
 
 export const Navigation = () => {

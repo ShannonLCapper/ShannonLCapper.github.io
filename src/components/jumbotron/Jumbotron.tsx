@@ -5,14 +5,16 @@ import { FaChevronDown } from 'react-icons/fa';
 import { Link } from 'react-scroll';
 
 import Flowers from 'src/assets/images/flowers.jpg';
-import { SECTION_ID } from 'src/components/navigation/Navigation';
+import {
+    NAV_RIGHT,
+    NAV_WIDTH,
+    SECTION_ID,
+} from 'src/components/navigation/Navigation';
 import { border } from 'src/styles/border';
 import { colors } from 'src/styles/colors';
 import { font } from 'src/styles/font';
 import { mediaQueryTarget } from 'src/styles/scalepoint';
 
-const NAV_RIGHT = 40;
-const NAV_WIDTH = 110;
 const JUMBO_TEXT_COLOR = colors.white;
 
 const Root = styled.div({
