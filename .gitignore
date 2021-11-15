@@ -1,5 +1,8 @@
 node_modules
 **/*.psd
 
+# production
+/build
+
 #OS-generated files
 .DS_Store
