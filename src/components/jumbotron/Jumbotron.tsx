@@ -2,8 +2,10 @@ import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { darken } from 'polished';
 import { FaChevronDown } from 'react-icons/fa';
+import { Link } from 'react-scroll';
 
 import Flowers from 'src/assets/images/flowers.jpg';
+import { SECTION_ID } from 'src/components/navigation/Navigation';
 import { border } from 'src/styles/border';
 import { colors } from 'src/styles/colors';
 import { font } from 'src/styles/font';
@@ -66,7 +68,8 @@ const Subhead = styled.p({
     fontWeight: 200,
 });
 
-const QuickScroll = styled.a({
+const QuickScroll = styled(Link)({
+    cursor: 'pointer',
     position: 'absolute',
     display: 'grid',
     placeItems: 'center',
@@ -97,14 +100,13 @@ const DownIcon = styled(FaChevronDown)({
     animation: `.8s ${bounce} infinite alternate`,
 });
 
-// TODO: get scrolling working
 export const Jumbotron = () => {
     return (
         <Root>
             <Contents>
                 <Heading>Shannon L Capper</Heading>
                 <Subhead>Portfolio</Subhead>
-                <QuickScroll href='#profile'>
+                <QuickScroll to={SECTION_ID.PROFILE} smooth={true}>
                     <DownIcon size={40} aria-label='Scroll down' />
                 </QuickScroll>
             </Contents>

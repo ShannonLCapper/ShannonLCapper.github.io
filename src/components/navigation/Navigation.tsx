@@ -3,36 +3,45 @@ import { darken } from 'polished';
 import { useMemo, useState } from 'react';
 import AnimateHeight from 'react-animate-height';
 import { FiMenu } from 'react-icons/fi';
+import { Link } from 'react-scroll';
 
 import { border } from 'src/styles/border';
 import { colors } from 'src/styles/colors';
 import { useMediaQueryTarget } from 'src/styles/scalepoint';
 import { transition } from 'src/styles/transition';
 
-// TODO: smooth scroll, DRY up hrefs
+export enum SECTION_ID {
+    PROFILE = 'profile',
+    PROJECTS = 'projects',
+    SKILLS = 'skills',
+    EDUCATION = 'education',
+    WORK_EXPERIENCE = 'work-experience',
+    CONTACT = 'contact',
+}
+
 const navItems = [
     {
-        href: '#profile',
+        id: SECTION_ID.PROFILE,
         label: 'Profile',
     },
     {
-        href: '#projects',
+        id: SECTION_ID.PROJECTS,
         label: 'Projects',
     },
     {
-        href: '#skills',
+        id: SECTION_ID.SKILLS,
         label: 'Skills',
     },
     {
-        href: '#education',
+        id: SECTION_ID.EDUCATION,
         label: 'Education',
     },
     {
-        href: '#work-experience',
+        id: SECTION_ID.WORK_EXPERIENCE,
         label: 'Work',
     },
     {
-        href: '#contact',
+        id: SECTION_ID.CONTACT,
         label: 'Contact',
     },
 ];
@@ -89,7 +98,9 @@ const MobileNavList = styled.ul({
     backgroundColor: colors.secondary,
 });
 
-const NavLink = styled.a({
+const NAV_LINK_ACTIVE_CLASS = 'active';
+const NavLink = styled(Link)({
+    cursor: 'pointer',
     display: 'block',
     width: '100%',
     paddingLeft: 0,
@@ -103,9 +114,9 @@ const NavLink = styled.a({
     ':hover, :focus': {
         color: darken(0.05, colors.light),
     },
-    // '.active': {
-    //     backgroundColor: colors.primary,
-    // }
+    [`&.${NAV_LINK_ACTIVE_CLASS}`]: {
+        backgroundColor: colors.primary,
+    },
 });
 
 const useMenuState = () => {
@@ -142,9 +153,15 @@ const MobileNavigation = () => {
                 easing='ease-in-out'
             >
                 <MobileNavList>
-                    {navItems.map(({ label, href }) => (
-                        <li key={href}>
-                            <NavLink href={href} onClick={menuState.hide}>
+                    {navItems.map(({ label, id }) => (
+                        <li key={id}>
+                            <NavLink
+                                activeClass={NAV_LINK_ACTIVE_CLASS}
+                                to={id}
+                                spy={true}
+                                smooth={true}
+                                onClick={menuState.hide}
+                            >
                                 {label}
                             </NavLink>
                         </li>
