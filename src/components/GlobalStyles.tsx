@@ -8,9 +8,11 @@ const globalStyles = (): CSSObject => ({
         boxSizing: 'border-box',
     },
     body: {
+        margin: 0,
         backgroundColor: colors.white,
         color: colors.secondary,
         fontFamily: font.family.sansSerif,
+        lineHeight: font.lineHeight.default,
     },
 });
 
