@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { darken } from 'polished';
 import { useMemo, useState } from 'react';
+import AnimateHeight from 'react-animate-height';
 import { FiMenu } from 'react-icons/fi';
 
 import { border } from 'src/styles/border';
@@ -70,15 +71,12 @@ const HamburgerButton = styled.button({
     },
 });
 
-const MobileNavMenu = styled.div(({ visible }: { visible: boolean }) => ({
+const MobileNavMenu = styled(AnimateHeight)({
     position: 'absolute',
     top: '100%',
     left: 0,
     right: 0,
-    overflow: 'hidden',
-    maxHeight: visible ? '100vh' : 0,
-    transition: `max-height 0.3s ease-in-out`,
-}));
+});
 
 const MobileNavList = styled.ul({
     margin: 0,
@@ -137,8 +135,11 @@ const MobileNavigation = () => {
                 </HamburgerButton>
             </MobileNavHeader>
             <MobileNavMenu
+                aria-label='Navigation menu'
                 aria-expanded={menuState.visible}
-                visible={menuState.visible}
+                height={menuState.visible ? 'auto' : 0}
+                duration={300}
+                easing='ease-in-out'
             >
                 <MobileNavList>
                     {navItems.map(({ label, href }) => (
