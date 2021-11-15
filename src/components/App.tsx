@@ -14,11 +14,11 @@ export const App = () => {
     return (
         <>
             <GlobalStyles />
+            <header>
+                <Jumbotron />
+            </header>
             <Navigation />
             <main>
-                <header>
-                    <Jumbotron />
-                </header>
                 <ProfileSection />
                 <ProjectsSection />
                 <SkillsSection />
