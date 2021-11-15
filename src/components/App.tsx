@@ -20,10 +20,10 @@ export const App = () => {
             <Navigation />
             <main>
                 <ProfileSection />
-                <ProjectsSection />
-                <SkillsSection />
-                <EducationSection />
                 <WorkExperienceSection />
+                <SkillsSection />
+                <ProjectsSection />
+                <EducationSection />
                 <ContactSection />
             </main>
         </>

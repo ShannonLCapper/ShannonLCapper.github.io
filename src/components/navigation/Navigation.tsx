@@ -25,20 +25,20 @@ const navItems = [
         label: 'Profile',
     },
     {
-        id: SECTION_ID.PROJECTS,
-        label: 'Projects',
+        id: SECTION_ID.WORK_EXPERIENCE,
+        label: 'Work',
     },
     {
         id: SECTION_ID.SKILLS,
         label: 'Skills',
     },
     {
-        id: SECTION_ID.EDUCATION,
-        label: 'Education',
+        id: SECTION_ID.PROJECTS,
+        label: 'Projects',
     },
     {
-        id: SECTION_ID.WORK_EXPERIENCE,
-        label: 'Work',
+        id: SECTION_ID.EDUCATION,
+        label: 'Education',
     },
     {
         id: SECTION_ID.CONTACT,
