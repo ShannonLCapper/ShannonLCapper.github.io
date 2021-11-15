@@ -1,7 +1,7 @@
 import { CSSObject, Global } from '@emotion/react';
 
-import { colors } from './styles/colors';
-import { font } from './styles/font';
+import { colors } from 'src/styles/colors';
+import { font } from 'src/styles/font';
 
 const globalStyles = (): CSSObject => ({
     '*': {
