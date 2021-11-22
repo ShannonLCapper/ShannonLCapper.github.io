@@ -62,10 +62,6 @@ const DetailsArea = styled.div({
     gridArea: DETAILS_AREA,
 });
 
-const AreaHeading = styled(SectionH3)({
-    marginBottom: 10,
-});
-
 const Paragraph = styled.p({
     margin: 0,
 });
@@ -141,7 +137,7 @@ export const ProfileSection = () => {
         >
             <Layout>
                 <AboutMeArea>
-                    <AreaHeading>About me</AreaHeading>
+                    <SectionH3>About me</SectionH3>
                     <Paragraph>
                         I am a self-taught and highly motivated full-stack
                         developer. After discovering my passion for programming
@@ -163,7 +159,7 @@ export const ProfileSection = () => {
                     />
                 </ProfilePicArea>
                 <DetailsArea>
-                    <AreaHeading>Details</AreaHeading>
+                    <SectionH3>Details</SectionH3>
                     <DetailsList>
                         <DescriptionTerm>Name</DescriptionTerm>
                         <DescriptionDetails>

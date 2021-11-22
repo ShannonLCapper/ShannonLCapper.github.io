@@ -49,7 +49,6 @@ const lists = [
 
 const ListHeading = styled(SectionH3)({
     textAlign: 'center',
-    marginBottom: 10,
 });
 
 const List = styled.ul({

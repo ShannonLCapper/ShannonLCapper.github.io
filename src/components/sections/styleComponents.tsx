@@ -113,6 +113,7 @@ export const SectionH3 = styled.h3({
     color: colors.primary,
     fontFamily: font.family.cursive,
     fontSize: '3rem',
+    marginBottom: 10,
 });
 
 export const Section = ({
