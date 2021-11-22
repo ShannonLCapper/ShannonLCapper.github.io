@@ -60,7 +60,7 @@ const SectionTitle = styled.h2(
         color: isLastSection ? LAST_SECTION_TEXT_COLOR : colors.primary,
         fontFamily: font.family.cursive,
         fontSize: '5.5rem',
-        lineHeight: 1.1,
+        lineHeight: font.lineHeight.heading,
         marginBottom: 10,
     }),
 );
@@ -114,6 +114,20 @@ export const SectionH3 = styled.h3({
     fontFamily: font.family.cursive,
     fontSize: '3rem',
     marginBottom: 10,
+    lineHeight: font.lineHeight.heading,
+});
+
+export const DetailedListH3 = styled(SectionH3)({
+    fontSize: '2.2rem',
+});
+
+export const DetailedListH4 = styled.h4({
+    margin: 0,
+    fontWeight: 'bold',
+    color: 'inherit',
+    fontSize: '1.5rem',
+    marginBottom: 10,
+    lineHeight: font.lineHeight.heading,
 });
 
 export const Section = ({

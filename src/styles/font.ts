@@ -5,5 +5,6 @@ export const font = {
     },
     lineHeight: {
         default: 1.42857143,
+        heading: 1.1,
     },
 };
