@@ -117,19 +117,6 @@ export const SectionH3 = styled.h3({
     lineHeight: font.lineHeight.heading,
 });
 
-export const DetailedListH3 = styled(SectionH3)({
-    fontSize: '2.2rem',
-});
-
-export const DetailedListH4 = styled.h4({
-    margin: 0,
-    fontWeight: 'bold',
-    color: 'inherit',
-    fontSize: '1.5rem',
-    marginBottom: 10,
-    lineHeight: font.lineHeight.heading,
-});
-
 export const Section = ({
     id,
     title,
