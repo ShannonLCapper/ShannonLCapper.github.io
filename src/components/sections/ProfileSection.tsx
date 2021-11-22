@@ -170,7 +170,7 @@ export const ProfileSection = () => {
                             {calculateAge(2, 19, 1993)} years
                         </DescriptionDetails>
                         <DescriptionTerm>Location</DescriptionTerm>
-                        <DescriptionDetails>Bellevue, WA</DescriptionDetails>
+                        <DescriptionDetails>Sammamish, WA</DescriptionDetails>
                         <DescriptionTerm>GitHub</DescriptionTerm>
                         <DescriptionDetails>
                             <Link
