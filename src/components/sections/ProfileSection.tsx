@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { differenceInYears } from 'date-fns';
 import { darken } from 'polished';
 
 import SelfPortrait from 'src/assets/images/self-portrait.jpg';
@@ -127,19 +128,8 @@ const DownloadResume = styled.a({
 
 function calculateAge(birthMonth: number, birthDay: number, birthYear: number) {
     const currentDate = new Date();
-    const currentYear = currentDate.getFullYear();
-    const currentMonth = currentDate.getMonth();
-    const currentDay = currentDate.getDate();
-    let age = currentYear - birthYear;
-
-    if (currentMonth < birthMonth - 1) {
-        age--;
-    }
-    if (birthMonth - 1 === currentMonth && currentDay < birthDay) {
-        age--;
-    }
-
-    return age;
+    const birthDate = new Date(birthYear, birthMonth - 1, birthDay);
+    return differenceInYears(currentDate, birthDate);
 }
 
 export const ProfileSection = () => {
