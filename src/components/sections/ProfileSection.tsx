@@ -133,21 +133,24 @@ export const ProfileSection = () => {
         <Section
             id={SECTION_ID.PROFILE}
             title='Profile'
-            subtitle='I’m a full-stack developer who unites logic with creativity'
+            subtitle='I’m a senior frontend developer who loves solving challenging frontend problems using maintainable code'
         >
             <Layout>
                 <AboutMeArea>
                     <SectionH3>About me</SectionH3>
                     <Paragraph>
-                        I am a self-taught and highly motivated full-stack
-                        developer. After discovering my passion for programming
-                        in the summer of 2016, I have dedicated each day to
-                        increasing my knowledge and skill in the field of web
-                        development. My perfectionistic tendencies lend well
-                        toward efficient, DRY code and elegant page layouts. I
-                        strive to be the best at what I do, while working
-                        hand-in-hand with my peers to raise up the team as a
-                        whole.
+                        For the past 5 years, I’ve been shipping products in
+                        some of the most challenging spaces on the web, such as
+                        rich text editors, extensions, and integrations in
+                        third-party platforms. I get energy from working closely
+                        with designers to bring their vision to life.
+                        Maintainable and readable code is one of my utmost
+                        priorities, which is why I strongly advocate for
+                        TypeScript and other tools that make writing code easier
+                        and faster. And in the end, what matters most to me is
+                        leveling up the team as a whole, whether through
+                        mentorship, code-reviews, project leadership, or just
+                        helping rubber-duck a hairy technical issue.
                     </Paragraph>
                 </AboutMeArea>
                 <ProfilePicArea>
