@@ -152,7 +152,7 @@ export const ProfileSection = () => {
                 </AboutMeArea>
                 <ProfilePicArea>
                     <ProfilePic
-                        alt='Graduation picture of Shannon'
+                        alt='Shannon with her dog River'
                         src={SelfPortrait}
                         width={300}
                         height={300}
